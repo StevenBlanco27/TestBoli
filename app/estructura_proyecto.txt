@@ -1,518 +1,163 @@
-﻿Listado de rutas de carpetas
-El número de serie del volumen es 9083-878B
-app
-|   .yarnrc
-|   estructura_proyecto.txt
-|   favicon.ico
-|   icono.png
-|   main.html
-|   main.js
-|   package-lock.json
-|   package.json
-|   yarn.lock
-|   
-+---assets
-|   +---fonts
-|   |       cs_italic.ttf
-|   |       cs_regular.ttf
-|   |       sofachrome_rg.ttf
-|   |       sofachrome_rg_it.ttf
-|   |       
-|   +---img
-|   |       activado.png
-|   |       activado.webp
-|   |       blanqueada.png
-|   |       credito.png
-|   |       desactivado.png
-|   |       desactivado.webp
-|   |       estrella.png
-|   |       fondo-blanqueadas-out.png
-|   |       fondo-blanqueadas.png
-|   |       fondo-laguna.png
-|   |       fondo-laguna.webp
-|   |       fondo-monona.png
-|   |       fondo-rana-premio.png
-|   |       fondo-rana.png
-|   |       fondo-ranita-premio.png
-|   |       monona-explosion.png
-|   |       rana-blanqueada.png
-|   |       rana-felicitaciones.png
-|   |       ranas-esquina.png
-|   |       ranas-esquina.webp
-|   |       
-|   +---lang
-|   |       en.json
-|   |       es-co.json
-|   |       fr.json
-|   |       
-|   +---sounds
-|   |   |   blanqueado.ogg
-|   |   |   configurar.ogg
-|   |   |   finjuego.ogg
-|   |   |   introduccion.ogg
-|   |   |   lanzamiento.ogg
-|   |   |   moneda.ogg
-|   |   |   
-|   |   +---en
-|   |   |       continuar.ogg
-|   |   |       credito1.ogg
-|   |   |       credito2.ogg
-|   |   |       credito2_equipo.ogg
-|   |   |       credito3_equipo.ogg
-|   |   |       credito4_equipo.ogg
-|   |   |       credito5_equipo.ogg
-|   |   |       credito6_equipo.ogg
-|   |   |       c_jugador.ogg
-|   |   |       gameover.ogg
-|   |   |       ganaste.ogg
-|   |   |       inicio.ogg
-|   |   |       jugar.ogg
-|   |   |       monona.ogg
-|   |   |       rana.ogg
-|   |   |       ranita.ogg
-|   |   |       s_blank.ogg
-|   |   |       s_jugador.ogg
-|   |   |       s_puntaje.ogg
-|   |   |       
-|   |   +---es-co
-|   |   |       continuar.ogg
-|   |   |       credito1.ogg
-|   |   |       credito2.ogg
-|   |   |       credito2_equipo.ogg
-|   |   |       credito3_equipo.ogg
-|   |   |       credito4_equipo.ogg
-|   |   |       credito5_equipo.ogg
-|   |   |       credito6_equipo.ogg
-|   |   |       c_jugador.ogg
-|   |   |       gameover.ogg
-|   |   |       ganaste.ogg
-|   |   |       inicio.ogg
-|   |   |       jugar.ogg
-|   |   |       monona.ogg
-|   |   |       rana.ogg
-|   |   |       ranita.ogg
-|   |   |       s_blank.ogg
-|   |   |       s_jugador.ogg
-|   |   |       s_puntaje.ogg
-|   |   |       
-|   |   \---fr
-|   |           continuar.ogg
-|   |           credito1.ogg
-|   |           credito2.ogg
-|   |           credito2_equip.ogg
-|   |           credito3.ogg
-|   |           credito4.ogg
-|   |           credito6.ogg
-|   |           c_jugador.ogg
-|   |           gameover.ogg
-|   |           ganaste.ogg
-|   |           inicio.ogg
-|   |           jugar.ogg
-|   |           monona.ogg
-|   |           rana.ogg
-|   |           ranita.ogg
-|   |           s_blank.ogg
-|   |           s_jugador.ogg
-|   |           s_puntaje.ogg
-|   |           
-|   \---videos
-|           LEAME.txt
-|           
-+---config
-|       config.json
-|       
-+---css
-|       styles.css
-|       styles.less
-|       
-+---html
-|       blanqueado.html
-|       finChico.html
-|       ganaste.html
-|       inicio.html
-|       jugador.html
-|       monona.html
-|       opcion.html
-|       principal.html
-|       rana.html
-|       ranita.html
-|       seleccionBlanqueada.html
-|       seleccionEquipos.html
-|       seleccionJugadores.html
-|       seleccionPuntos.html
-|       
-+---js
-|   |   app.js
-|   |   translate.js
-|   |   
-|   +---controllers
-|   |       BotonesCtrl.js
-|   |       FinChicoCtrl.js
-|   |       InicioCtrl.js
-|   |       JugarCtrl.js
-|   |       NotificacionCtrl.js
-|   |       PrincipalCtrl.js
-|   |       SeleccionBlanqueadaCtrl.js
-|   |       SeleccionEquiposCtrl.js
-|   |       SeleccionJugadoresCtrl.js
-|   |       SeleccionPuntosCtrl.js
-|   |       
-|   +---directives
-|   |       botonera.js
-|   |       jugador.js
-|   |       opcion.js
-|   |       
-|   +---model
-|   |       Chico.js
-|   |       Configuracion.js
-|   |       Jugador.js
-|   |       Participante.js
-|   |       Tanda.js
-|   |       
-|   +---services
-|   |       audio.js
-|   |       
-|   \---vendor
-|       +---Frosch
-|       |       frosch.js
-|       |       frosch.min.js
-|       |       
-|       \---less
-|               less.min.js
-|               
-+---node_modules
-|   |   .package-lock.json
-|   |   
-|   +---angular
-|   |       angular-csp.css
-|   |       angular.js
-|   |       angular.min.js
-|   |       angular.min.js.gzip
-|   |       angular.min.js.map
-|   |       bower.json
-|   |       index.js
-|   |       LICENSE.md
-|   |       package.json
-|   |       README.md
-|   |       
-|   +---angular-hotkeys
-|   |   |   .editorconfig
-|   |   |   .jshintrc
-|   |   |   .npmignore
-|   |   |   bower.json
-|   |   |   Gruntfile.js
-|   |   |   LICENSE
-|   |   |   package.json
-|   |   |   README.md
-|   |   |   
-|   |   +---build
-|   |   |       hotkeys.css
-|   |   |       hotkeys.js
-|   |   |       hotkeys.min.css
-|   |   |       hotkeys.min.js
-|   |   |       
-|   |   +---src
-|   |   |       hotkeys.css
-|   |   |       hotkeys.js
-|   |   |       
-|   |   \---test
-|   |           hotkeys.coffee
-|   |           karma.conf.js
-|   |           
-|   +---angular-sanitize
-|   |       angular-sanitize.js
-|   |       angular-sanitize.min.js
-|   |       angular-sanitize.min.js.map
-|   |       bower.json
-|   |       index.js
-|   |       LICENSE.md
-|   |       package.json
-|   |       README.md
-|   |       
-|   +---angular-translate
-|   |   |   .nvmrc
-|   |   |   CHANGELOG.md
-|   |   |   LICENSE
-|   |   |   package.json
-|   |   |   README.md
-|   |   |   
-|   |   +---dist
-|   |   |   |   angular-translate.js
-|   |   |   |   angular-translate.min.js
-|   |   |   |   
-|   |   |   +---angular-translate-handler-log
-|   |   |   |       angular-translate-handler-log.js
-|   |   |   |       angular-translate-handler-log.min.js
-|   |   |   |       
-|   |   |   +---angular-translate-interpolation-messageformat
-|   |   |   |       angular-translate-interpolation-messageformat.js
-|   |   |   |       angular-translate-interpolation-messageformat.min.js
-|   |   |   |       
-|   |   |   +---angular-translate-loader-partial
-|   |   |   |       angular-translate-loader-partial.js
-|   |   |   |       angular-translate-loader-partial.min.js
-|   |   |   |       
-|   |   |   +---angular-translate-loader-static-files
-|   |   |   |       angular-translate-loader-static-files.js
-|   |   |   |       angular-translate-loader-static-files.min.js
-|   |   |   |       
-|   |   |   +---angular-translate-loader-url
-|   |   |   |       angular-translate-loader-url.js
-|   |   |   |       angular-translate-loader-url.min.js
-|   |   |   |       
-|   |   |   +---angular-translate-storage-cookie
-|   |   |   |       angular-translate-storage-cookie.js
-|   |   |   |       angular-translate-storage-cookie.min.js
-|   |   |   |       
-|   |   |   \---angular-translate-storage-local
-|   |   |           angular-translate-storage-local.js
-|   |   |           angular-translate-storage-local.min.js
-|   |   |           
-|   |   \---node_modules
-|   |       \---angular
-|   |               angular-csp.css
-|   |               angular.js
-|   |               angular.min.js
-|   |               angular.min.js.gzip
-|   |               angular.min.js.map
-|   |               bower.json
-|   |               index.js
-|   |               LICENSE.md
-|   |               package.json
-|   |               README.md
-|   |               
-|   +---angular-translate-loader-static-files
-|   |       angular-translate-loader-static-files.js
-|   |       angular-translate-loader-static-files.min.js
-|   |       bower.json
-|   |       package.json
-|   |       README.md
-|   |       
-|   +---angular-ui-router
-|   |   |   CHANGELOG.md
-|   |   |   CONTRIBUTING.md
-|   |   |   LICENSE
-|   |   |   package.json
-|   |   |   README.md
-|   |   |   
-|   |   +---release
-|   |   |       angular-ui-router.js
-|   |   |       angular-ui-router.min.js
-|   |   |       
-|   |   \---src
-|   |           common.js
-|   |           resolve.js
-|   |           state.js
-|   |           stateDirectives.js
-|   |           stateFilters.js
-|   |           templateFactory.js
-|   |           urlMatcherFactory.js
-|   |           urlRouter.js
-|   |           view.js
-|   |           viewDirective.js
-|   |           viewScroll.js
-|   |           
-|   +---home-or-tmp
-|   |       index.js
-|   |       license
-|   |       package.json
-|   |       readme.md
-|   |       
-|   +---jquery
-|   |   |   AUTHORS.txt
-|   |   |   bower.json
-|   |   |   LICENSE.txt
-|   |   |   package.json
-|   |   |   README.md
-|   |   |   
-|   |   +---dist
-|   |   |       jquery.js
-|   |   |       jquery.min.js
-|   |   |       jquery.min.map
-|   |   |       jquery.slim.js
-|   |   |       jquery.slim.min.js
-|   |   |       jquery.slim.min.map
-|   |   |       
-|   |   +---external
-|   |   |   \---sizzle
-|   |   |       |   LICENSE.txt
-|   |   |       |   
-|   |   |       \---dist
-|   |   |               sizzle.js
-|   |   |               sizzle.min.js
-|   |   |               sizzle.min.map
-|   |   |               
-|   |   \---src
-|   |       |   ajax.js
-|   |       |   attributes.js
-|   |       |   callbacks.js
-|   |       |   core.js
-|   |       |   css.js
-|   |       |   data.js
-|   |       |   deferred.js
-|   |       |   deprecated.js
-|   |       |   dimensions.js
-|   |       |   effects.js
-|   |       |   event.js
-|   |       |   jquery.js
-|   |       |   manipulation.js
-|   |       |   offset.js
-|   |       |   queue.js
-|   |       |   selector-native.js
-|   |       |   selector-sizzle.js
-|   |       |   selector.js
-|   |       |   serialize.js
-|   |       |   traversing.js
-|   |       |   wrap.js
-|   |       |   
-|   |       +---ajax
-|   |       |   |   jsonp.js
-|   |       |   |   load.js
-|   |       |   |   script.js
-|   |       |   |   xhr.js
-|   |       |   |   
-|   |       |   \---var
-|   |       |           location.js
-|   |       |           nonce.js
-|   |       |           rquery.js
-|   |       |           
-|   |       +---attributes
-|   |       |       attr.js
-|   |       |       classes.js
-|   |       |       prop.js
-|   |       |       support.js
-|   |       |       val.js
-|   |       |       
-|   |       +---core
-|   |       |   |   access.js
-|   |       |   |   camelCase.js
-|   |       |   |   DOMEval.js
-|   |       |   |   init.js
-|   |       |   |   isAttached.js
-|   |       |   |   nodeName.js
-|   |       |   |   parseHTML.js
-|   |       |   |   parseXML.js
-|   |       |   |   ready-no-deferred.js
-|   |       |   |   ready.js
-|   |       |   |   readyException.js
-|   |       |   |   stripAndCollapse.js
-|   |       |   |   support.js
-|   |       |   |   toType.js
-|   |       |   |   
-|   |       |   \---var
-|   |       |           rsingleTag.js
-|   |       |           
-|   |       +---css
-|   |       |   |   addGetHookIf.js
-|   |       |   |   adjustCSS.js
-|   |       |   |   curCSS.js
-|   |       |   |   finalPropName.js
-|   |       |   |   hiddenVisibleSelectors.js
-|   |       |   |   showHide.js
-|   |       |   |   support.js
-|   |       |   |   
-|   |       |   \---var
-|   |       |           cssExpand.js
-|   |       |           getStyles.js
-|   |       |           isHiddenWithinTree.js
-|   |       |           rboxStyle.js
-|   |       |           rnumnonpx.js
-|   |       |           swap.js
-|   |       |           
-|   |       +---data
-|   |       |   |   Data.js
-|   |       |   |   
-|   |       |   \---var
-|   |       |           acceptData.js
-|   |       |           dataPriv.js
-|   |       |           dataUser.js
-|   |       |           
-|   |       +---deferred
-|   |       |       exceptionHook.js
-|   |       |       
-|   |       +---deprecated
-|   |       |       ajax-event-alias.js
-|   |       |       event.js
-|   |       |       
-|   |       +---effects
-|   |       |       animatedSelector.js
-|   |       |       Tween.js
-|   |       |       
-|   |       +---event
-|   |       |       focusin.js
-|   |       |       support.js
-|   |       |       trigger.js
-|   |       |       
-|   |       +---exports
-|   |       |       amd.js
-|   |       |       global.js
-|   |       |       
-|   |       +---manipulation
-|   |       |   |   buildFragment.js
-|   |       |   |   getAll.js
-|   |       |   |   setGlobalEval.js
-|   |       |   |   support.js
-|   |       |   |   wrapMap.js
-|   |       |   |   _evalUrl.js
-|   |       |   |   
-|   |       |   \---var
-|   |       |           rscriptType.js
-|   |       |           rtagName.js
-|   |       |           
-|   |       +---queue
-|   |       |       delay.js
-|   |       |       
-|   |       +---traversing
-|   |       |   |   findFilter.js
-|   |       |   |   
-|   |       |   \---var
-|   |       |           dir.js
-|   |       |           rneedsContext.js
-|   |       |           siblings.js
-|   |       |           
-|   |       \---var
-|   |               arr.js
-|   |               class2type.js
-|   |               document.js
-|   |               documentElement.js
-|   |               flat.js
-|   |               fnToString.js
-|   |               getProto.js
-|   |               hasOwn.js
-|   |               indexOf.js
-|   |               isFunction.js
-|   |               isWindow.js
-|   |               ObjectFunctionString.js
-|   |               pnum.js
-|   |               push.js
-|   |               rcheckableType.js
-|   |               rcssNum.js
-|   |               rnothtmlwhite.js
-|   |               slice.js
-|   |               support.js
-|   |               toString.js
-|   |               
-|   +---os-homedir
-|   |       index.js
-|   |       license
-|   |       package.json
-|   |       readme.md
-|   |       
-|   +---os-tmpdir
-|   |       index.js
-|   |       license
-|   |       package.json
-|   |       readme.md
-|   |       
-|   \---videogular
-|           .npmignore
-|           bower.json
-|           Gruntfile.js
-|           index.js
-|           LICENSE
-|           package.json
-|           README.md
-|           videogular.js
-|           videogular.min.js
-|           
-\---services
+﻿C:\Users\Dev\Documents\Proyectos\Boli\TestBoli\app\assets
+C:\Users\Dev\Documents\Proyectos\Boli\TestBoli\app\config
+C:\Users\Dev\Documents\Proyectos\Boli\TestBoli\app\css
+C:\Users\Dev\Documents\Proyectos\Boli\TestBoli\app\html
+C:\Users\Dev\Documents\Proyectos\Boli\TestBoli\app\js
+C:\Users\Dev\Documents\Proyectos\Boli\TestBoli\app\services
+C:\Users\Dev\Documents\Proyectos\Boli\TestBoli\app\.yarnrc
+C:\Users\Dev\Documents\Proyectos\Boli\TestBoli\app\estructura_proyecto.txt
+C:\Users\Dev\Documents\Proyectos\Boli\TestBoli\app\favicon.ico
+C:\Users\Dev\Documents\Proyectos\Boli\TestBoli\app\gulpfile.js
+C:\Users\Dev\Documents\Proyectos\Boli\TestBoli\app\icono.png
+C:\Users\Dev\Documents\Proyectos\Boli\TestBoli\app\main.html
+C:\Users\Dev\Documents\Proyectos\Boli\TestBoli\app\main.js
+C:\Users\Dev\Documents\Proyectos\Boli\TestBoli\app\package-lock.json
+C:\Users\Dev\Documents\Proyectos\Boli\TestBoli\app\package.json
+C:\Users\Dev\Documents\Proyectos\Boli\TestBoli\app\yarn.lock
+C:\Users\Dev\Documents\Proyectos\Boli\TestBoli\app\assets\fonts
+C:\Users\Dev\Documents\Proyectos\Boli\TestBoli\app\assets\img
+C:\Users\Dev\Documents\Proyectos\Boli\TestBoli\app\assets\lang
+C:\Users\Dev\Documents\Proyectos\Boli\TestBoli\app\assets\sounds
+C:\Users\Dev\Documents\Proyectos\Boli\TestBoli\app\assets\videos
+C:\Users\Dev\Documents\Proyectos\Boli\TestBoli\app\assets\fonts\cs_italic.ttf
+C:\Users\Dev\Documents\Proyectos\Boli\TestBoli\app\assets\fonts\cs_regular.ttf
+C:\Users\Dev\Documents\Proyectos\Boli\TestBoli\app\assets\fonts\sofachrome_rg.ttf
+C:\Users\Dev\Documents\Proyectos\Boli\TestBoli\app\assets\fonts\sofachrome_rg_it.ttf
+C:\Users\Dev\Documents\Proyectos\Boli\TestBoli\app\assets\img\activado.png
+C:\Users\Dev\Documents\Proyectos\Boli\TestBoli\app\assets\img\activado.webp
+C:\Users\Dev\Documents\Proyectos\Boli\TestBoli\app\assets\img\blanqueada.png
+C:\Users\Dev\Documents\Proyectos\Boli\TestBoli\app\assets\img\credito.png
+C:\Users\Dev\Documents\Proyectos\Boli\TestBoli\app\assets\img\desactivado.png
+C:\Users\Dev\Documents\Proyectos\Boli\TestBoli\app\assets\img\desactivado.webp
+C:\Users\Dev\Documents\Proyectos\Boli\TestBoli\app\assets\img\estrella.png
+C:\Users\Dev\Documents\Proyectos\Boli\TestBoli\app\assets\img\fondo-blanqueadas-out.png
+C:\Users\Dev\Documents\Proyectos\Boli\TestBoli\app\assets\img\fondo-blanqueadas.png
+C:\Users\Dev\Documents\Proyectos\Boli\TestBoli\app\assets\img\fondo-laguna.png
+C:\Users\Dev\Documents\Proyectos\Boli\TestBoli\app\assets\img\fondo-laguna.webp
+C:\Users\Dev\Documents\Proyectos\Boli\TestBoli\app\assets\img\fondo-monona.png
+C:\Users\Dev\Documents\Proyectos\Boli\TestBoli\app\assets\img\fondo-rana-premio.png
+C:\Users\Dev\Documents\Proyectos\Boli\TestBoli\app\assets\img\fondo-rana.png
+C:\Users\Dev\Documents\Proyectos\Boli\TestBoli\app\assets\img\fondo-ranita-premio.png
+C:\Users\Dev\Documents\Proyectos\Boli\TestBoli\app\assets\img\monona-explosion.png
+C:\Users\Dev\Documents\Proyectos\Boli\TestBoli\app\assets\img\rana-blanqueada.png
+C:\Users\Dev\Documents\Proyectos\Boli\TestBoli\app\assets\img\rana-felicitaciones.png
+C:\Users\Dev\Documents\Proyectos\Boli\TestBoli\app\assets\img\ranas-esquina.png
+C:\Users\Dev\Documents\Proyectos\Boli\TestBoli\app\assets\img\ranas-esquina.webp
+C:\Users\Dev\Documents\Proyectos\Boli\TestBoli\app\assets\lang\en.json
+C:\Users\Dev\Documents\Proyectos\Boli\TestBoli\app\assets\lang\es-co.json
+C:\Users\Dev\Documents\Proyectos\Boli\TestBoli\app\assets\lang\fr.json
+C:\Users\Dev\Documents\Proyectos\Boli\TestBoli\app\assets\sounds\en
+C:\Users\Dev\Documents\Proyectos\Boli\TestBoli\app\assets\sounds\es-co
+C:\Users\Dev\Documents\Proyectos\Boli\TestBoli\app\assets\sounds\fr
+C:\Users\Dev\Documents\Proyectos\Boli\TestBoli\app\assets\sounds\blanqueado.ogg
+C:\Users\Dev\Documents\Proyectos\Boli\TestBoli\app\assets\sounds\configurar.ogg
+C:\Users\Dev\Documents\Proyectos\Boli\TestBoli\app\assets\sounds\finjuego.ogg
+C:\Users\Dev\Documents\Proyectos\Boli\TestBoli\app\assets\sounds\introduccion.ogg
+C:\Users\Dev\Documents\Proyectos\Boli\TestBoli\app\assets\sounds\lanzamiento.ogg
+C:\Users\Dev\Documents\Proyectos\Boli\TestBoli\app\assets\sounds\moneda.ogg
+C:\Users\Dev\Documents\Proyectos\Boli\TestBoli\app\assets\sounds\en\continuar.ogg
+C:\Users\Dev\Documents\Proyectos\Boli\TestBoli\app\assets\sounds\en\credito1.ogg
+C:\Users\Dev\Documents\Proyectos\Boli\TestBoli\app\assets\sounds\en\credito2.ogg
+C:\Users\Dev\Documents\Proyectos\Boli\TestBoli\app\assets\sounds\en\credito2_equipo.ogg
+C:\Users\Dev\Documents\Proyectos\Boli\TestBoli\app\assets\sounds\en\credito3_equipo.ogg
+C:\Users\Dev\Documents\Proyectos\Boli\TestBoli\app\assets\sounds\en\credito4_equipo.ogg
+C:\Users\Dev\Documents\Proyectos\Boli\TestBoli\app\assets\sounds\en\credito5_equipo.ogg
+C:\Users\Dev\Documents\Proyectos\Boli\TestBoli\app\assets\sounds\en\credito6_equipo.ogg
+C:\Users\Dev\Documents\Proyectos\Boli\TestBoli\app\assets\sounds\en\c_jugador.ogg
+C:\Users\Dev\Documents\Proyectos\Boli\TestBoli\app\assets\sounds\en\gameover.ogg
+C:\Users\Dev\Documents\Proyectos\Boli\TestBoli\app\assets\sounds\en\ganaste.ogg
+C:\Users\Dev\Documents\Proyectos\Boli\TestBoli\app\assets\sounds\en\inicio.ogg
+C:\Users\Dev\Documents\Proyectos\Boli\TestBoli\app\assets\sounds\en\jugar.ogg
+C:\Users\Dev\Documents\Proyectos\Boli\TestBoli\app\assets\sounds\en\monona.ogg
+C:\Users\Dev\Documents\Proyectos\Boli\TestBoli\app\assets\sounds\en\rana.ogg
+C:\Users\Dev\Documents\Proyectos\Boli\TestBoli\app\assets\sounds\en\ranita.ogg
+C:\Users\Dev\Documents\Proyectos\Boli\TestBoli\app\assets\sounds\en\s_blank.ogg
+C:\Users\Dev\Documents\Proyectos\Boli\TestBoli\app\assets\sounds\en\s_jugador.ogg
+C:\Users\Dev\Documents\Proyectos\Boli\TestBoli\app\assets\sounds\en\s_puntaje.ogg
+C:\Users\Dev\Documents\Proyectos\Boli\TestBoli\app\assets\sounds\es-co\continuar.ogg
+C:\Users\Dev\Documents\Proyectos\Boli\TestBoli\app\assets\sounds\es-co\credito1.ogg
+C:\Users\Dev\Documents\Proyectos\Boli\TestBoli\app\assets\sounds\es-co\credito2.ogg
+C:\Users\Dev\Documents\Proyectos\Boli\TestBoli\app\assets\sounds\es-co\credito2_equipo.ogg
+C:\Users\Dev\Documents\Proyectos\Boli\TestBoli\app\assets\sounds\es-co\credito3_equipo.ogg
+C:\Users\Dev\Documents\Proyectos\Boli\TestBoli\app\assets\sounds\es-co\credito4_equipo.ogg
+C:\Users\Dev\Documents\Proyectos\Boli\TestBoli\app\assets\sounds\es-co\credito5_equipo.ogg
+C:\Users\Dev\Documents\Proyectos\Boli\TestBoli\app\assets\sounds\es-co\credito6_equipo.ogg
+C:\Users\Dev\Documents\Proyectos\Boli\TestBoli\app\assets\sounds\es-co\c_jugador.ogg
+C:\Users\Dev\Documents\Proyectos\Boli\TestBoli\app\assets\sounds\es-co\gameover.ogg
+C:\Users\Dev\Documents\Proyectos\Boli\TestBoli\app\assets\sounds\es-co\ganaste.ogg
+C:\Users\Dev\Documents\Proyectos\Boli\TestBoli\app\assets\sounds\es-co\inicio.ogg
+C:\Users\Dev\Documents\Proyectos\Boli\TestBoli\app\assets\sounds\es-co\jugar.ogg
+C:\Users\Dev\Documents\Proyectos\Boli\TestBoli\app\assets\sounds\es-co\monona.ogg
+C:\Users\Dev\Documents\Proyectos\Boli\TestBoli\app\assets\sounds\es-co\rana.ogg
+C:\Users\Dev\Documents\Proyectos\Boli\TestBoli\app\assets\sounds\es-co\ranita.ogg
+C:\Users\Dev\Documents\Proyectos\Boli\TestBoli\app\assets\sounds\es-co\s_blank.ogg
+C:\Users\Dev\Documents\Proyectos\Boli\TestBoli\app\assets\sounds\es-co\s_jugador.ogg
+C:\Users\Dev\Documents\Proyectos\Boli\TestBoli\app\assets\sounds\es-co\s_puntaje.ogg
+C:\Users\Dev\Documents\Proyectos\Boli\TestBoli\app\assets\sounds\fr\continuar.ogg
+C:\Users\Dev\Documents\Proyectos\Boli\TestBoli\app\assets\sounds\fr\credito1.ogg
+C:\Users\Dev\Documents\Proyectos\Boli\TestBoli\app\assets\sounds\fr\credito2.ogg
+C:\Users\Dev\Documents\Proyectos\Boli\TestBoli\app\assets\sounds\fr\credito2_equip.ogg
+C:\Users\Dev\Documents\Proyectos\Boli\TestBoli\app\assets\sounds\fr\credito3.ogg
+C:\Users\Dev\Documents\Proyectos\Boli\TestBoli\app\assets\sounds\fr\credito4.ogg
+C:\Users\Dev\Documents\Proyectos\Boli\TestBoli\app\assets\sounds\fr\credito6.ogg
+C:\Users\Dev\Documents\Proyectos\Boli\TestBoli\app\assets\sounds\fr\c_jugador.ogg
+C:\Users\Dev\Documents\Proyectos\Boli\TestBoli\app\assets\sounds\fr\gameover.ogg
+C:\Users\Dev\Documents\Proyectos\Boli\TestBoli\app\assets\sounds\fr\ganaste.ogg
+C:\Users\Dev\Documents\Proyectos\Boli\TestBoli\app\assets\sounds\fr\inicio.ogg
+C:\Users\Dev\Documents\Proyectos\Boli\TestBoli\app\assets\sounds\fr\jugar.ogg
+C:\Users\Dev\Documents\Proyectos\Boli\TestBoli\app\assets\sounds\fr\monona.ogg
+C:\Users\Dev\Documents\Proyectos\Boli\TestBoli\app\assets\sounds\fr\rana.ogg
+C:\Users\Dev\Documents\Proyectos\Boli\TestBoli\app\assets\sounds\fr\ranita.ogg
+C:\Users\Dev\Documents\Proyectos\Boli\TestBoli\app\assets\sounds\fr\s_blank.ogg
+C:\Users\Dev\Documents\Proyectos\Boli\TestBoli\app\assets\sounds\fr\s_jugador.ogg
+C:\Users\Dev\Documents\Proyectos\Boli\TestBoli\app\assets\sounds\fr\s_puntaje.ogg
+C:\Users\Dev\Documents\Proyectos\Boli\TestBoli\app\assets\videos\LEAME.txt
+C:\Users\Dev\Documents\Proyectos\Boli\TestBoli\app\config\config.json
+C:\Users\Dev\Documents\Proyectos\Boli\TestBoli\app\css\styles.css
+C:\Users\Dev\Documents\Proyectos\Boli\TestBoli\app\css\styles.less
+C:\Users\Dev\Documents\Proyectos\Boli\TestBoli\app\html\blanqueado.html
+C:\Users\Dev\Documents\Proyectos\Boli\TestBoli\app\html\finChico.html
+C:\Users\Dev\Documents\Proyectos\Boli\TestBoli\app\html\ganaste.html
+C:\Users\Dev\Documents\Proyectos\Boli\TestBoli\app\html\inicio.html
+C:\Users\Dev\Documents\Proyectos\Boli\TestBoli\app\html\jugador.html
+C:\Users\Dev\Documents\Proyectos\Boli\TestBoli\app\html\monona.html
+C:\Users\Dev\Documents\Proyectos\Boli\TestBoli\app\html\opcion.html
+C:\Users\Dev\Documents\Proyectos\Boli\TestBoli\app\html\principal.html
+C:\Users\Dev\Documents\Proyectos\Boli\TestBoli\app\html\rana.html
+C:\Users\Dev\Documents\Proyectos\Boli\TestBoli\app\html\ranita.html
+C:\Users\Dev\Documents\Proyectos\Boli\TestBoli\app\html\seleccionBlanqueada.html
+C:\Users\Dev\Documents\Proyectos\Boli\TestBoli\app\html\seleccionEquipos.html
+C:\Users\Dev\Documents\Proyectos\Boli\TestBoli\app\html\seleccionJugadores.html
+C:\Users\Dev\Documents\Proyectos\Boli\TestBoli\app\html\seleccionPuntos.html
+C:\Users\Dev\Documents\Proyectos\Boli\TestBoli\app\js\controllers
+C:\Users\Dev\Documents\Proyectos\Boli\TestBoli\app\js\directives
+C:\Users\Dev\Documents\Proyectos\Boli\TestBoli\app\js\model
+C:\Users\Dev\Documents\Proyectos\Boli\TestBoli\app\js\services
+C:\Users\Dev\Documents\Proyectos\Boli\TestBoli\app\js\vendor
+C:\Users\Dev\Documents\Proyectos\Boli\TestBoli\app\js\app.js
+C:\Users\Dev\Documents\Proyectos\Boli\TestBoli\app\js\templates.js
+C:\Users\Dev\Documents\Proyectos\Boli\TestBoli\app\js\translate.js
+C:\Users\Dev\Documents\Proyectos\Boli\TestBoli\app\js\controllers\BotonesCtrl.js
+C:\Users\Dev\Documents\Proyectos\Boli\TestBoli\app\js\controllers\FinChicoCtrl.js
+C:\Users\Dev\Documents\Proyectos\Boli\TestBoli\app\js\controllers\InicioCtrl.js
+C:\Users\Dev\Documents\Proyectos\Boli\TestBoli\app\js\controllers\JugarCtrl.js
+C:\Users\Dev\Documents\Proyectos\Boli\TestBoli\app\js\controllers\NotificacionCtrl.js
+C:\Users\Dev\Documents\Proyectos\Boli\TestBoli\app\js\controllers\PrincipalCtrl.js
+C:\Users\Dev\Documents\Proyectos\Boli\TestBoli\app\js\controllers\SeleccionBlanqueadaCtrl.js
+C:\Users\Dev\Documents\Proyectos\Boli\TestBoli\app\js\controllers\SeleccionEquiposCtrl.js
+C:\Users\Dev\Documents\Proyectos\Boli\TestBoli\app\js\controllers\SeleccionJugadoresCtrl.js
+C:\Users\Dev\Documents\Proyectos\Boli\TestBoli\app\js\controllers\SeleccionPuntosCtrl.js
+C:\Users\Dev\Documents\Proyectos\Boli\TestBoli\app\js\directives\botonera.js
+C:\Users\Dev\Documents\Proyectos\Boli\TestBoli\app\js\directives\jugador.js
+C:\Users\Dev\Documents\Proyectos\Boli\TestBoli\app\js\directives\opcion.js
+C:\Users\Dev\Documents\Proyectos\Boli\TestBoli\app\js\model\Chico.js
+C:\Users\Dev\Documents\Proyectos\Boli\TestBoli\app\js\model\Configuracion.js
+C:\Users\Dev\Documents\Proyectos\Boli\TestBoli\app\js\model\Jugador.js
+C:\Users\Dev\Documents\Proyectos\Boli\TestBoli\app\js\model\Participante.js
+C:\Users\Dev\Documents\Proyectos\Boli\TestBoli\app\js\model\Tanda.js
+C:\Users\Dev\Documents\Proyectos\Boli\TestBoli\app\js\services\audio.js
+C:\Users\Dev\Documents\Proyectos\Boli\TestBoli\app\js\vendor\Frosch
+C:\Users\Dev\Documents\Proyectos\Boli\TestBoli\app\js\vendor\less
+C:\Users\Dev\Documents\Proyectos\Boli\TestBoli\app\js\vendor\Frosch\frosch.js
+C:\Users\Dev\Documents\Proyectos\Boli\TestBoli\app\js\vendor\Frosch\frosch.min.js
+C:\Users\Dev\Documents\Proyectos\Boli\TestBoli\app\js\vendor\less\less.min.js

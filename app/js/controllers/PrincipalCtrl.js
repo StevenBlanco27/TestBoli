@@ -1,67 +1,108 @@
-/**
- * Servicio “audio” con Web Audio API y caché en memoria.
- * Mantiene el mismo nombre que la factoría antigua para que
- * los controladores no requieran cambios.
- */
-
 angular.module('Frosch')
-  .service('audio', function ($q, $filter) {
+    .controller('PrincipalCtrl', function ($scope, $state, chico, config, hotkeys, audio, $timeout) {
 
-    // Contexto de audio único para toda la aplicación
-    const ctx = new (window.AudioContext || window.webkitAudioContext)();
-    AudioWrapper.prototype._ctx = ctx;
-    // Caché: URL → AudioBuffer ya decodificado
-    const cache = {};
+        // Detener audio de configuración si existe
+        if ($scope.configurarAudio) {
+            $scope.configurarAudio.stop();
+        }
 
-    /** Descarga y decodifica sólo la primera vez. */
-    function loadBuffer(nombre, traducir) {
-      const url = traducir
-        ? $filter('translateAudio')(nombre).replace('.ogg', '.opus') // usa .opus si convertiste
-        : `assets/sounds/${nombre.replace('.ogg', '.opus')}`;
+        const lanzamientoAudio = new audio("lanzamiento.ogg", false);
+        const cambioJugadorAudio = new audio("c_jugador.ogg", true);
 
-      // ¿Ya está en memoria?
-      if (cache[url]) {
-        return $q.when(cache[url]);
-      }
+        const keymap = config.configuracion.keymap;
+        $scope.jugadores = chico.getJugadores();
+        $scope.config = config;
+        $scope.chico = chico;
 
-      // Fetch + decode una sola vez
-      return fetch(url)
-        .then(r => r.arrayBuffer())
-        .then(buf => ctx.decodeAudioData(buf))
-        .then(decoded => (cache[url] = decoded));
-    }
+        // Activar primer jugador
+        if ($scope.jugadores.length > 0) {
+            $scope.jugadores[0].activar();
+        }
 
-    /**
-     * Constructor compatible con el antiguo:
-     *    var snd = new audio('lanzamiento.ogg', false);
-     *    snd.play();   snd.stop();
-     */
-    function AudioWrapper(nombre, traducir = true) {
-      this.nombre   = nombre;
-      this.traducir = traducir;
-      this._source  = null;   // BufferSource activo
-    }
+        // Animar orificio y reproducir sonido de lanzamiento
+        function rotar(orificio) {
+            const idx = orificio - 1;
+            const $element = angular.element(document.querySelectorAll('.orificios .argolla')[idx]);
+            if ($element.length) {
+                $element.addClass('rotar');
+                $element.one('webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend', function () {
+                    $element.removeClass('rotar');
+                });
+            }
+            lanzamientoAudio.play();
+        }
 
-    /** Reproduce el clip (crea nuevo BufferSource cada vez). */
-    AudioWrapper.prototype.play = function () {
-      const self = this;
-      return loadBuffer(self.nombre, self.traducir).then(buffer => {
-        self.stop();                       // evita solapar
-        const src = ctx.createBufferSource();
-        src.buffer = buffer;
-        src.connect(ctx.destination);
-        src.start(0);
-        self._source = src;
-      });
-    };
+        // Función para sumar puntos al jugador actual
+        $scope.sumarPuntos = function (orificio) {
+            if (!chico.jugadorActual.terminoTurno) {
+                rotar(orificio);
+                chico.jugadorActual.sumarPuntos(config.configuracion.orificios[orificio - 1]);
 
-    /** Detiene la reproducción inmediatamente. */
-    AudioWrapper.prototype.stop = function () {
-      if (this._source) {
-        try { this._source.stop(); } finally { this._source = null; }
-      }
-    };
+                if (orificio === config.configuracion.orificioRana) {
+                    $state.go('jugar.chico.principal.rana');
+                } else if (orificio === config.configuracion.orificioRanita) {
+                    $state.go('jugar.chico.principal.ranita');
+                } else if (chico.jugadorActual.monona) {
+                    $state.go('jugar.chico.principal.monona');
+                } else if (chico.jugadorActual.gano) {
+                    $state.go('jugar.chico.principal.ganaste');
+                }
 
-    // El servicio devuelve el constructor como antes hacía la factoría
-    return AudioWrapper;
-  });
+                chico.verificarTurno();
+            }
+        };
+
+        // Función para cambiar de turno
+        $scope.cambiarTurno = function (turno) {
+            if ($state.current.name !== 'jugar.chico.principal') {
+                return; // No cambiar turno si estamos en notificaciones
+            }
+
+            try {
+                chico.cambiarTurno(turno);
+                $timeout(function () {
+                    if (!chico.termino) {
+                        cambioJugadorAudio.play();
+                    }
+                }, chico.jugadorAnterior.blanqueado ? 3000 : 0);
+
+                if (chico.jugadorAnterior.blanqueado) {
+                    $state.go('jugar.chico.principal.blanqueado');
+                }
+            } catch (e) {
+                console.error('Error al cambiar de turno:', e);
+            }
+        };
+
+        // --- Configuración de Hotkeys ---
+
+        const hotkeysBound = hotkeys.bindTo($scope);
+
+        // Hotkeys para cada orificio (dinámico)
+        angular.forEach(config.configuracion.orificios, function (valor, indice) {
+            const numOrificio = indice + 1;
+            hotkeysBound.add({
+                combo: keymap['orificio' + numOrificio],
+                callback: function () {
+                    $scope.sumarPuntos(numOrificio);
+                }
+            });
+        });
+
+        // Hotkey para cambiar de jugador
+        hotkeysBound.add({
+            combo: keymap.cambiarJugador,
+            callback: function () {
+                $scope.cambiarTurno(true); // Cambio automático de jugador
+            }
+        });
+
+        // Hotkey para regresar al menú
+        hotkeysBound.add({
+            combo: keymap.menu,
+            callback: function () {
+                $state.go('inicio');
+            }
+        });
+
+    });
