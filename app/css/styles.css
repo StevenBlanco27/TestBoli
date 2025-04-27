@@ -35,7 +35,7 @@ body .espacio {
   background-color: rgba(42, 61, 39, 0.8);
 }
 .fondo-laguna {
-  background: url("../assets/img/fondo-laguna.png") no-repeat /*,
+  background: url("../assets/img/fondo-laguna.webp") no-repeat /*,
   url("../assets/img/fondo-rana.png") no-repeat,
   url("../assets/img/fondo-rana-premio.png") no-repeat,
   url("../assets/img/fondo-monona.png") no-repeat,
@@ -191,11 +191,11 @@ video {
   width: 12.7vw;
 }
 .seleccionJugadores .jugadores progress::-webkit-progress-bar {
-  background: transparent url("../assets/img/desactivado.png");
+  background: transparent url("../assets/img/desactivado.webp");
   background-size: 12.7vw 33.3vh;
 }
 .seleccionJugadores .jugadores progress::-webkit-progress-value {
-  background: transparent url("../assets/img/activado.png");
+  background: transparent url("../assets/img/activado.webp");
   background-size: 12.7vw 33.3vh;
 }
 .jugador {
