@@ -1,6 +1,9 @@
 const { app, BrowserWindow, ipcMain } = require('electron');
+app.allowRendererProcessReuse = true; 
 const fs = require('fs');
 const path = require('path');
+
+app.commandLine.appendSwitch('autoplay-policy', 'no-user-gesture-required');
 
 function createWindow() {
     const win = new BrowserWindow({
@@ -37,5 +40,7 @@ function createWindow() {
 
 // Opcional: Desactivar aceleración de hardware si quieres aún más rápido
 // app.disableHardwareAcceleration();
+app.commandLine.appendSwitch('autoplay-policy', 'no-user-gesture-required');
+app.commandLine.appendSwitch('disable-features', 'AutoplayUserGestureRequired');
 
 app.whenReady().then(createWindow);

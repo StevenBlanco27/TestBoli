@@ -3,7 +3,7 @@
     "appId": "com.github.ivanrey.Frosch",
     "productName": "Frosch",
     "artifactName": "${productName}-${os}.${ext}",
-    "asar": false,
+    "asar": true,
     "copyright": "Copyright © 2018 ${author}",
     "mac": {
       "category": "public.app-category.games",
@@ -74,13 +74,14 @@
     "pack": "electron-builder --dir",
     "dist": "electron-builder",
     "publish-dist": "electron-builder -lmw --publish always",
-    "postinstall": "electron-builder install-app-deps"
+    "postinstall": "electron-builder install-app-deps",
+    "dist:pi": "electron-builder --dir --linux --armv7l --config.asar=true"
   },
   "author": "Ivan Rey",
   "license": "MIT",
   "devDependencies": {
     "electron": "^11.5.0",
-    "electron-builder": "^22.7.0"
+    "electron-builder": "^26.0.12"
   },
   "engines": {
     "yarn": ">= 1.0.0"

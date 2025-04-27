@@ -8,7 +8,8 @@ angular.module('Frosch')
   .service('audio', function ($q, $filter) {
 
     // Contexto de audio único para toda la aplicación
-    const ctx   = new (window.AudioContext || window.webkitAudioContext)();
+    const ctx = new (window.AudioContext || window.webkitAudioContext)();
+    AudioWrapper.prototype._ctx = ctx;
     // Caché: URL → AudioBuffer ya decodificado
     const cache = {};
 

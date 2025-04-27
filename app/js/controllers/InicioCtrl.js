@@ -1,10 +1,21 @@
 angular.module('Frosch')
-    .controller('InicioCtrl', function ($scope, $state, hotkeys, config, $http, $interval) {
+    .controller('InicioCtrl', function ($scope, $state, hotkeys, config, $http, $interval,audio) {
         $scope.cargado = false;
         $scope.imagenFondoBase64 = 'assets/img/ranas-esquina.webp';   // imagen optimizada
         $scope.cargado = true;
-
+        
+        const sndInicio       = new audio('inicio.ogg', true);       
+        const sndIntroduccion = new audio('introduccion.ogg', false); 
+    
+        // 1. Garantiza que el AudioContext esté activo
+        if (typeof sndInicio._ctx === 'object' && sndInicio._ctx.state === 'suspended') {
+            sndInicio._ctx.resume();           // algunos navegadores lo requieren
+        }
+        // 2. Toca los sonidos (ahora sí permitido)
+        sndInicio.play();
+        sndIntroduccion.play();
         $scope.iniciar = function () {
+            // 3. Continúa con el flujo habitual
             $state.go('jugar.seleccionEquipos');
         };
 
