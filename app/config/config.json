@@ -1,0 +1,66 @@
+{
+  "idioma":"es-co",
+  "puntajes": [
+    2000,
+    2500,
+    3000,
+    3500,
+    4000,
+    4500
+  ],
+  "blanqueadas": [
+    0,
+    -100,
+    -200,
+    -150
+  ],
+  "creditosPorPuntaje": {
+    "2000": 1,
+    "2500": 1,
+    "3000": 1,
+    "3500": 1,
+    "4000": 1,
+    "4500": 1
+
+  },
+  "maxArgollas": 6,
+  "maxBlanqueadas": 6,
+  "minutosEntreVideos": 5,
+  "orificios": [
+    150,
+    250,
+    150,
+    15,
+    200,
+    15,
+    25,
+    40,
+    25,
+    100,
+    10,
+    100
+  ],
+  "orificioRana": 2,
+  "orificioRanita": 5,
+  "monona": false,
+  "mononaSinRepetirOrificio": false,
+  "keymap": {
+    "menu": "m",
+    "arriba": "up",
+    "abajo": "down",
+    "enter": "enter",
+    "orificio1": "0",
+    "orificio2": ".",
+    "orificio3": "+",
+    "orificio4": "1",
+    "orificio5": "2",
+    "orificio6": "3",
+    "orificio7": "4",
+    "orificio8": "5",
+    "orificio9": "6",
+    "orificio10": "7",
+    "orificio11": "8",
+    "orificio12": "9",
+    "cambiarJugador": "t"
+  }
+}
