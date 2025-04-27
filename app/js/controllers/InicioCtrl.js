@@ -9,13 +9,15 @@ angular.module('Frosch')
     
         // 1. Garantiza que el AudioContext esté activo
         if (typeof sndInicio._ctx === 'object' && sndInicio._ctx.state === 'suspended') {
-            sndInicio._ctx.resume();           // algunos navegadores lo requieren
+            sndInicio._ctx.resume();           
+
         }
         // 2. Toca los sonidos (ahora sí permitido)
         sndInicio.play();
         sndIntroduccion.play();
         $scope.iniciar = function () {
-            // 3. Continúa con el flujo habitual
+            sndInicio.stop();
+            sndIntroduccion.stop();
             $state.go('jugar.seleccionEquipos');
         };
 

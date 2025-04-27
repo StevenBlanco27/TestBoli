@@ -14,25 +14,24 @@ angular.module('Frosch')
         $scope.config = config;
         $scope.chico = chico;
 
-        // Activar primer jugador
         if ($scope.jugadores.length > 0) {
             $scope.jugadores[0].activar();
         }
 
-        // Animar orificio y reproducir sonido de lanzamiento
+        // Función para encontrar y animar un orificio sin jQuery
         function rotar(orificio) {
-            const idx = orificio - 1;
-            const $element = angular.element(document.querySelectorAll('.orificios .argolla')[idx]);
-            if ($element.length) {
-                $element.addClass('rotar');
-                $element.one('webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend', function () {
-                    $element.removeClass('rotar');
-                });
+            const elements = document.querySelectorAll('.orificios .argolla');
+            if (elements && elements[orificio - 1]) {
+                const el = elements[orificio - 1];
+                el.classList.add('rotar');
+                const removeRotation = () => el.classList.remove('rotar');
+                el.addEventListener('transitionend', removeRotation, { once: true });
+                el.addEventListener('webkitTransitionEnd', removeRotation, { once: true });
             }
             lanzamientoAudio.play();
         }
 
-        // Función para sumar puntos al jugador actual
+        // Función para sumar puntos
         $scope.sumarPuntos = function (orificio) {
             if (!chico.jugadorActual.terminoTurno) {
                 rotar(orificio);
@@ -52,15 +51,15 @@ angular.module('Frosch')
             }
         };
 
-        // Función para cambiar de turno
+        // Función para cambiar turno
         $scope.cambiarTurno = function (turno) {
             if ($state.current.name !== 'jugar.chico.principal') {
-                return; // No cambiar turno si estamos en notificaciones
+                return;
             }
 
             try {
                 chico.cambiarTurno(turno);
-                $timeout(function () {
+                $timeout(() => {
                     if (!chico.termino) {
                         cambioJugadorAudio.play();
                     }
@@ -70,15 +69,14 @@ angular.module('Frosch')
                     $state.go('jugar.chico.principal.blanqueado');
                 }
             } catch (e) {
-                console.error('Error al cambiar de turno:', e);
+                console.error('Error cambiando turno:', e);
             }
         };
 
         // --- Configuración de Hotkeys ---
-
         const hotkeysBound = hotkeys.bindTo($scope);
 
-        // Hotkeys para cada orificio (dinámico)
+        // Hotkeys para orificios (dinámico)
         angular.forEach(config.configuracion.orificios, function (valor, indice) {
             const numOrificio = indice + 1;
             hotkeysBound.add({
@@ -89,15 +87,15 @@ angular.module('Frosch')
             });
         });
 
-        // Hotkey para cambiar de jugador
+        // Hotkey para cambiar jugador
         hotkeysBound.add({
             combo: keymap.cambiarJugador,
             callback: function () {
-                $scope.cambiarTurno(true); // Cambio automático de jugador
+                $scope.cambiarTurno(true);
             }
         });
 
-        // Hotkey para regresar al menú
+        // Hotkey para volver al menú
         hotkeysBound.add({
             combo: keymap.menu,
             callback: function () {

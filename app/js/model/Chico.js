@@ -11,7 +11,6 @@ angular.module('Frosch')
             this.termino = false;
 
             this.buscarSiguienteJugador = function buscarSiguienteJugador() {
-                // debugger;
                 var i = this.numJugadorActual;
                 var nuevoJugador = null;
                 do {
