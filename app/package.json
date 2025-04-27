@@ -19,5 +19,10 @@
   "license": "MIT",
   "engines": {
     "yarn": ">= 1.0.0"
+  },
+  "devDependencies": {
+    "gulp": "^5.0.0",
+    "gulp-angular-templatecache": "^3.0.1",
+    "gulp-htmlmin": "^5.0.1"
   }
 }
