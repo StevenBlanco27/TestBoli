@@ -7,8 +7,10 @@ angular.module('Frosch', ['ui.router', 'translate', 'cfp.hotkeys', 'com.2fdevs.v
   .config(
     function ($stateProvider, $urlRouterProvider, hotkeysProvider, $compileProvider) {
 
-      $compileProvider.aHrefSanitizationWhitelist(/^\s*(https?|chrome-extension|file|blob:chrome-extension:):/);
-      $compileProvider.imgSrcSanitizationWhitelist(/^\s*(https?|chrome-extension|file|blob:chrome-extension:):/);
+      $compileProvider.aHrefSanitizationWhitelist(
+        /^\s*(https?|chrome-extension|file|blob|data):/);
+    $compileProvider.imgSrcSanitizationWhitelist(
+        /^\s*(https?|chrome-extension|file|blob|data):/);
       //Definicion de los estados
       $stateProvider.state('inicio', {
         url: "/inicio",

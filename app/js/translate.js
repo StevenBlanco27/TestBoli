@@ -7,6 +7,8 @@ angular.module('translate', ['pascalprecht.translate'])
         });
 
 
+        // No usar sanitización para mayor rapidez (opcionalmente)
+        $translateProvider.useSanitizeValueStrategy('escape');
         $translateProvider.preferredLanguage('es-co');
     })
     .filter('translateReplace', function ($translate) {
