@@ -1,0 +1,6 @@
+app/components
+app/yarn-error.log
+node_modules
+dist
+.idea
+assets/videos/*.webm
