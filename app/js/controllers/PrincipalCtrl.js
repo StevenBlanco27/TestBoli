@@ -1,128 +1,66 @@
+/**
+ * Servicio “audio” con Web Audio API y caché en memoria.
+ * Mantiene el mismo nombre que la factoría antigua para que
+ * los controladores no requieran cambios.
+ */
+
 angular.module('Frosch')
-    .controller('PrincipalCtrl',
-    function ($scope, $state, chico, config, hotkeys, audio, $timeout) {
+  .service('audio', function ($q, $filter) {
 
-        if ($scope.configurarAudio) //en pruebas arranca aca de una entonces no esta el audio activo
-            $scope.configurarAudio.stop();
+    // Contexto de audio único para toda la aplicación
+    const ctx   = new (window.AudioContext || window.webkitAudioContext)();
+    // Caché: URL → AudioBuffer ya decodificado
+    const cache = {};
 
-        var lanzamientoAudio = new audio("lanzamiento.ogg", false);
-        var cambioJugadorAudio = new audio("c_jugador.ogg", true);
+    /** Descarga y decodifica sólo la primera vez. */
+    function loadBuffer(nombre, traducir) {
+      const url = traducir
+        ? $filter('translateAudio')(nombre).replace('.ogg', '.opus') // usa .opus si convertiste
+        : `assets/sounds/${nombre.replace('.ogg', '.opus')}`;
 
-        var keymap = config.configuracion.keymap;
-        $scope.jugadores = chico.getJugadores();
-        $scope.config = config;
-        $scope.chico = chico;
+      // ¿Ya está en memoria?
+      if (cache[url]) {
+        return $q.when(cache[url]);
+      }
 
-        $scope.jugadores[0].activar();
+      // Fetch + decode una sola vez
+      return fetch(url)
+        .then(r => r.arrayBuffer())
+        .then(buf => ctx.decodeAudioData(buf))
+        .then(decoded => (cache[url] = decoded));
+    }
 
+    /**
+     * Constructor compatible con el antiguo:
+     *    var snd = new audio('lanzamiento.ogg', false);
+     *    snd.play();   snd.stop();
+     */
+    function AudioWrapper(nombre, traducir = true) {
+      this.nombre   = nombre;
+      this.traducir = traducir;
+      this._source  = null;   // BufferSource activo
+    }
 
-        function rotar(orificio) {
-            $('.orificios .argollas .argolla:eq(' + (orificio - 1) + ')').addClass('rotar')
-                .on('webkitTransitionEnd', function () {
-                    $(this).removeClass('rotar');
-                });
-            lanzamientoAudio.play();
-        }
+    /** Reproduce el clip (crea nuevo BufferSource cada vez). */
+    AudioWrapper.prototype.play = function () {
+      const self = this;
+      return loadBuffer(self.nombre, self.traducir).then(buffer => {
+        self.stop();                       // evita solapar
+        const src = ctx.createBufferSource();
+        src.buffer = buffer;
+        src.connect(ctx.destination);
+        src.start(0);
+        self._source = src;
+      });
+    };
 
-        $scope.sumarPuntos = function (orificio) {
-            if (!chico.jugadorActual.terminoTurno) {
-                rotar(orificio);
+    /** Detiene la reproducción inmediatamente. */
+    AudioWrapper.prototype.stop = function () {
+      if (this._source) {
+        try { this._source.stop(); } finally { this._source = null; }
+      }
+    };
 
-                chico.jugadorActual.sumarPuntos(config.configuracion.orificios[orificio - 1]);
-
-                if (orificio == config.configuracion.orificioRana)
-                    $state.go('jugar.chico.principal.rana');
-
-                else if (orificio == config.configuracion.orificioRanita)
-                    $state.go('jugar.chico.principal.ranita');
-
-                else if (chico.jugadorActual.monona)
-                    $state.go('jugar.chico.principal.monona');
-
-                else if (chico.jugadorActual.gano)
-                    $state.go('jugar.chico.principal.ganaste');
-
-
-                chico.verificarTurno();
-            }
-        };
-
-        $scope.cambiarTurno = function (turno) {
-            console.log("Estoy antes del breakpoint");
-            // debugger;
-            if ($state.current.name != 'jugar.chico.principal')
-                return; //por ahora no se cambia de turno en notificaciones
-                
-            try {
-                this.chico.cambiarTurno(turno);
-                $timeout(function () {
-                    if(!chico.termino)
-                        cambioJugadorAudio.play();
-                }, this.chico.jugadorAnterior.blanqueado ? 3000 : 0);
-
-                if (this.chico.jugadorAnterior.blanqueado) {
-                    $state.go('jugar.chico.principal.blanqueado');
-                }
-
-
-
-            }
-            catch (e) {
-                console.error(e)
-            }
-        };
-
-
-        // Hotkeys para los orificios
-        var sumarPuntosCk = function sumarPuntosCk(orificio) {
-            return function () {
-                return $scope.sumarPuntos(orificio);
-            }
-        };
-
-        var hotkeysBound = hotkeys.bindTo($scope);
-        angular.forEach(config.configuracion.orificios, function (orificio, indice) {
-            var numOrificio = indice + 1;
-            hotkeysBound.add({
-                combo: keymap['orificio' + numOrificio],
-                callback: sumarPuntosCk(numOrificio)
-            })
-        });
-
-        var cambiarTurnoCk = function cambiarTurnoCk(turno) {
-            return function () {
-                $scope.cambiarTurno(turno);
-            }
-        };
-
-        // // Hotkeys para cambios de turno
-        // for (var i = 1; i <= 6; i++) {
-        //     hotkeysBound.add({
-        //         combo: keymap['jugador' + i],
-        //         callback: cambiarTurnoCk(i)
-        //     })
-        // }
-
-        // Hotkey para cambiar de jugador con un solo botón
-        let jugadorActualIndex = 0;
-        const totalJugadores = $scope.jugadores.length;
-
-        hotkeysBound.add({
-            combo: keymap['cambiarJugador'],
-            callback: function () {
-                $scope.cambiarTurno(true); // en vez de pasar el índice, solo dile que cambie automáticamente
-            }
-        });
-        
-
-
-        //para poder terminar temprano el juego
-        hotkeysBound
-            .add({
-                combo: keymap.menu,
-                callback: function () {
-                    $state.go('inicio');
-                }
-            })
-
-    });
+    // El servicio devuelve el constructor como antes hacía la factoría
+    return AudioWrapper;
+  });
