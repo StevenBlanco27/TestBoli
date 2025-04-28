@@ -42,10 +42,7 @@ body .espacio {
   url("../assets/img/fondo-blanqueadas.png") no-repeat*/;
   background-size: 100% 100%;
 }
-.fondo-rana {
-  background: url("../assets/img/fondo-rana.png") no-repeat;
-  background-size: 100% 100%;
-}
+.fondo-rana{ background-image:url("../assets/img/fondo-rana.webp"); }
 .fondo-rana-premio {
   background: url("../assets/img/fondo-rana-premio.png") no-repeat;
   background-size: 100% 100%;

@@ -1,7 +1,8 @@
 angular.module('Frosch')
     .controller('SeleccionEquposCtrl',
-    function ($scope, $state, config) {
-
+    function ($scope, $state, config,audio) {
+        const sonidoSeleccion = new audio('s_jugador.ogg', true);
+        sonidoSeleccion.play();
         $scope.callback = {
             configurar: function configurar(opcion) {
                 config.setMaxPorEquipo(opcion);
