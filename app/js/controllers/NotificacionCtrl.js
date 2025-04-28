@@ -15,7 +15,7 @@ angular.module('Frosch')
                 $state.go('jugar.chico.principal.termino');
             else
                 $state.go('jugar.chico.principal')
-        }, 700);
+        }, 850);
 
         $scope.$on("$destroy",
             function (event) {
