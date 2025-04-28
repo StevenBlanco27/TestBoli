@@ -35,11 +35,7 @@ body .espacio {
   background-color: rgba(42, 61, 39, 0.8);
 }
 .fondo-laguna {
-  background: url("../assets/img/fondo-laguna.webp") no-repeat /*,
-  url("../assets/img/fondo-rana.png") no-repeat,
-  url("../assets/img/fondo-rana-premio.png") no-repeat,
-  url("../assets/img/fondo-monona.png") no-repeat,
-  url("../assets/img/fondo-blanqueadas.png") no-repeat*/;
+  background: url("../assets/img/fondo-laguna.webp") no-repeat;
   background-size: 100% 100%;
 }
 .fondo-rana{ background-image:url("../assets/img/fondo-rana.webp"); }

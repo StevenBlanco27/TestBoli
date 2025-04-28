@@ -7,18 +7,25 @@ angular.module('Frosch', ['ui.router', 'translate', 'cfp.hotkeys', 'com.2fdevs.v
   .config(
     function ($stateProvider, $urlRouterProvider, hotkeysProvider, $compileProvider) {
 
+      /* ────────────────────────────────────────────────────────────
+         LÍNEA AÑADIDA → Desactiva la “debug info” para producción
+         (reduce watchers y mejora rendimiento en Raspberry Pi)
+      ──────────────────────────────────────────────────────────── */
+      $compileProvider.debugInfoEnabled(false);
+
       $compileProvider.aHrefSanitizationWhitelist(
         /^\s*(https?|chrome-extension|file|blob|data):/);
-    $compileProvider.imgSrcSanitizationWhitelist(
+      $compileProvider.imgSrcSanitizationWhitelist(
         /^\s*(https?|chrome-extension|file|blob|data):/);
-      //Definicion de los estados
+
+      /* ---------------- Definición de estados ------------------- */
       $stateProvider.state('inicio', {
         url: "/inicio",
         controller: 'InicioCtrl',
         templateUrl: "html/inicio.html",
         resolve: {
           config: function (ConfiguracionService) {
-            return ConfiguracionService; // se usa para obtener el idioma del sonido en el filter
+            return ConfiguracionService;           // se usa para obtener el idioma del sonido en el filter
           }
         }
       })
@@ -58,11 +65,12 @@ angular.module('Frosch', ['ui.router', 'translate', 'cfp.hotkeys', 'com.2fdevs.v
               return tanda.chicoActual;
             }
           }
-        }).state('jugar.chico.seleccionPuntos', {
-        url: "/puntos",
-        controller: 'SeleccionPuntosCtrl',
-        templateUrl: "html/seleccionPuntos.html"
-      })
+        })
+        .state('jugar.chico.seleccionPuntos', {
+          url: "/puntos",
+          controller: 'SeleccionPuntosCtrl',
+          templateUrl: "html/seleccionPuntos.html"
+        })
         .state('jugar.chico.seleccionBlanqueada', {
           url: "/blanqueadas",
           controller: 'SeleccionBlanqueadaCtrl',
@@ -142,9 +150,7 @@ angular.module('Frosch', ['ui.router', 'translate', 'cfp.hotkeys', 'com.2fdevs.v
           url: "/fin",
           controller: 'FinChicoCtrl',
           templateUrl: "html/finChico.html"
-        })
-      ;
-
+        });
 
       hotkeysProvider.includeCheatSheet = false;
     }).run(function ($rootScope, hotkeys, audio) {
@@ -167,16 +173,16 @@ angular.module('Frosch', ['ui.router', 'translate', 'cfp.hotkeys', 'com.2fdevs.v
   };
 
   $rootScope.cargarCreditos = function () {
-    $rootScope.creditos = localStorage.creditos ? localStorage.creditos : 0;// así no deben perderse nunca créditos
+    $rootScope.creditos = localStorage.creditos ? localStorage.creditos : 0; // así no deben perderse nunca créditos
     $rootScope.creditosExcedente = localStorage.creditosExcedente ? localStorage.creditosExcedente : 0;
   };
 
-        $rootScope.restarCreditos = function(creditosUsados){
-            $rootScope.creditos -= creditosUsados;
-            $rootScope.guardarCreditos();
-        };
+  $rootScope.restarCreditos = function (creditosUsados) {
+    $rootScope.creditos -= creditosUsados;
+    $rootScope.guardarCreditos();
+  };
 
-        $rootScope.cargarCreditos();
+  $rootScope.cargarCreditos();
 
   var monedaAudio = new audio('moneda.ogg');
 
@@ -185,14 +191,12 @@ angular.module('Frosch', ['ui.router', 'translate', 'cfp.hotkeys', 'com.2fdevs.v
       combo: 's s s',
       callback: function () {
         window.close();
-
       }
     })
     .add({
       combo: 'c',
       callback: function () {
         $rootScope.creditos++;
-
         monedaAudio.play();
         $rootScope.guardarCreditos();
       }
@@ -202,6 +206,6 @@ angular.module('Frosch', ['ui.router', 'translate', 'cfp.hotkeys', 'com.2fdevs.v
       callback: function (event) {
         event.preventDefault();
       }
-    })
+    });
 
 });
