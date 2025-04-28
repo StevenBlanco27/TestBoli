@@ -1,4 +1,10 @@
-@font-face{font-family:cs;src:url("../assets/fonts/cs_regular.ttf")}@font-face{font-family:sofachrome;src:url("../assets/fonts/sofachrome_rg.ttf")}body{width:100vw;height:100vh;margin:0;font-size:16px;-webkit-user-select:none;overflow:hidden;background:#000}body .espacio{width:100vw;height:100vh;position:absolute;left:50%;top:50%;margin:-50vh 0 0 -50vw}.view{width:100%;height:100%;position:absolute;inset:0}.fondo-principal{background:rgba(42,61,39,.8)}/*── Fondos optimizados ──*/.fondo-laguna{background:url("../assets/img/fondo-laguna-small.webp") no-repeat;background-size:100% 100%}@media(min-width:1280px){.fondo-laguna{background-image:url("../assets/img/fondo-laguna.webp")}}.fondo-rana{background-image:url("../assets/img/fondo-rana.webp")} .fondo-rana-premio{background:url("../assets/img/fondo-rana-premio.png") no-repeat;background-size:100% 100%}.fondo-ranita-premio{background:url("../assets/img/fondo-ranita-premio.png") no-repeat;background-size:100% 100%}.fondo-monona{background:url("../assets/img/fondo-monona.png") no-repeat;background-size:100% 100%}
+@font-face{font-family:cs;src:url("../assets/fonts/cs_regular.ttf")}@font-face{font-family:sofachrome;src:url("../assets/fonts/sofachrome_rg.ttf")}body{width:100vw;height:100vh;margin:0;font-size:16px;-webkit-user-select:none;overflow:hidden;background:#000}body .espacio{width:100vw;height:100vh;position:absolute;left:50%;top:50%;margin:-50vh 0 0 -50vw}.view{width:100%;height:100%;position:absolute;inset:0}.fondo-principal{background:rgba(42,61,39,.8)}/*── Fondos optimizados ──*/.fondo-laguna{background:url("../assets/img/fondo-laguna-small.webp") no-repeat;background-size:100% 100%}@media(min-width:1280px){.fondo-laguna{background-image:url("../assets/img/fondo-laguna.webp")}}.fondo-rana{background-image:url("../assets/img/fondo-rana.webp")} 
+.fondo-rana-premio{background:url("../assets/img/fondo-rana-premio.png")
+   no-repeat;background-size:100% 100%}
+   .fondo-ranita-premio{background:url("../assets/img/fondo-ranita-premio.png") 
+    no-repeat;background-size:100% 100%}
+    .fondo-monona{background:url("../assets/img/fondo-monona.png") 
+      no-repeat;background-size:100% 100%}
 .fondo-blanqueadas{background:url("../assets/img/fondo-blanqueadas.webp") 
   no-repeat;background-size:100% 100%}
 .fondo-blanqueadas-out{background:url("../assets/img/fondo-blanqueadas-out.webp") 
