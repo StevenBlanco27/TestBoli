@@ -1,27 +1,33 @@
+// -----------------------------------------------------------------------------
+// seleccionJugadores.html  (diseño "slots" tipo ficha + número grande)
+// -----------------------------------------------------------------------------
 <audio ng-src="{{ sonido() | translateAudio }}" autoplay="autoplay"></audio>
 <div class="view fondo-laguna font-cs">
-    <div class="seleccionJugadores columnas-2">
-        <div ng-style="{visibility: creditosExactos() && 'visible' || 'hidden'}" class="grande centrar">{{"PRESIONE" |
-            translate}} {{"INICIAR" | translate}}
-        </div>
-        <div class="centrar jugadores">
-            <progress value="{{creditosJugador(1)}}" max="1"></progress>
-            <progress value="{{creditosJugador(2)}}" max="1"></progress>
-            <progress value="{{creditosJugador(3)}}" max="1"></progress>
-            <progress value="{{creditosJugador(4)}}" max="1"></progress>
-            <progress value="{{creditosJugador(5)}}" max="1"></progress>
-            <progress value="{{creditosJugador(6)}}" max="1"></progress>
-        </div>
-        <div class="grande centrar"> {{"NUM_CREDITOS" | translateReplace:{'numCreditos': creditos,
-            's':creditos==1?'':'s'} }}
-        </div>
+  <div class="seleccionJugadores columnas-2">
 
-        <div ng-if="creditosFaltantes()" class="mediano centrar">
-            {{ config.equipos?"PARA_X_EQUIPOS":"PARA_X_JUGADORES" | translateReplace:{ numCreditos: creditosFaltantes()}
-            }}
-        </div>
+    <h2 class="centrar mensaje-inicio" ng-show="creditosExactos()">
+      {{'PRESIONE' | translate}} {{'INICIAR' | translate}}
+    </h2>
 
-        <button class="inicio" ng-click="iniciar()" ng-show="creditosExactos()">{{"INICIAR" | translate}}</button>
+    <!-- Nueva fila de slots -->
+    <div class="slots centrar">
+      <div class="slot" ng-repeat="n in [1,2,3,4,5,6]"
+           ng-class="{filled: creditosJugador(n)>0}">
+        <span>{{n}}</span>
+      </div>
     </div>
 
+    <div class="grande centrar">
+      {{'NUM_CREDITOS' | translateReplace:{'numCreditos': creditos, 's':creditos==1?'':'s'} }}
+    </div>
+
+    <div class="mediano centrar" ng-if="creditosFaltantes()">
+      {{ config.equipos ? 'PARA_X_EQUIPOS' : 'PARA_X_JUGADORES' | translateReplace:{ numCreditos: creditosFaltantes()} }}
+    </div>
+
+    <button class="inicio" ng-click="iniciar()" ng-show="creditosExactos()">
+      {{'INICIAR' | translate}}
+    </button>
+  </div>
 </div>
+

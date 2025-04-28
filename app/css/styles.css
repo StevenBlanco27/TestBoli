@@ -512,3 +512,12 @@ button.inicio {
   border-bottom-color: rgba(160, 160, 160, 0.3);
   box-shadow: inset 0 0 0.2vw 0.2vw rgba(150, 150, 150, 0.05);
 }
+.slots      { display:flex; justify-content:center; gap:6vw; margin:6vh 0; }
+.slot       { width:10vw; height:10vw; border-radius:1vw; position:relative;
+              background:#555; box-shadow:0 0 .6vw rgba(0,0,0,.6);
+              transition:transform .25s, background .25s; }
+.slot.filled{ background:#25c166; transform:translateY(-.6vh) scale(1.06);
+              box-shadow:0 0 1.2vw rgba(0,255,100,.8); }
+.slot span  { position:absolute; inset:0; display:flex; align-items:center; justify-content:center;
+              font-family:'sofachrome_rg',sans-serif; font-size:4vw; color:#fff; text-shadow:0 0 .4vw #000; }
+.mensaje-inicio{ font-size:5vw; margin:0 0 2vh 0; text-shadow:0 0 1vw #fff; }

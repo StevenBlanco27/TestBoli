@@ -1,88 +1,70 @@
+// -----------------------------------------------------------------------------
+// SeleccionJugadoresCtrl.js  (versión corregida)
+// -----------------------------------------------------------------------------
 angular.module('Frosch')
-    .controller('SeleccionJugadoresCtrl',
-    function ($scope, $rootScope, $state, config, hotkeys) {
+  .controller('SeleccionJugadoresCtrl', function ($scope, $rootScope, $state, config, hotkeys) {
 
+    $scope.config = config;
 
-        $scope.iniciar = function () {
-            if ($scope.creditosExactos()) {
-                config.setNumJugadores($scope.numJugadores());
-                $rootScope.restarCreditos($scope.numJugadores() * config.creditosPorJugador());
-                $state.go('jugar.chico.principal');
-            }
-        };
+    /* ─── Variables cacheadas ─── */
+    $scope._numJugadores     = 0;
+    $scope._creditosExactos  = false;   // botón «Iniciar» visible
+    $scope._creditosFaltantes = 0;      // texto que indica cuántos faltan
 
-        hotkeys.bindTo($scope)
-            .add({
-                combo: config.configuracion.keymap.enter,
-                callback: $scope.iniciar
-            });
+    /** Recalcula métricas cuando cambian los créditos */
+    $scope.recalcularCreditos = function () {
+      $scope._numJugadores = Math.min($scope.creditos / config.creditosPorJugador(), 6);
 
-        if (!config.puntos)
-            $state.go('jugar.chico.seleccionPuntos');
+      // ✔ Botón visible cuando hay AL MENOS un jugador
+      $scope._creditosExactos = $scope.creditos && Math.round($scope._numJugadores) === $scope._numJugadores && $scope._numJugadores >= 1;
 
-        $scope.config = config;
+      $scope._creditosFaltantes = ($scope._numJugadores === 6)
+        ? false
+        : config.creditosPorJugador() - ($scope.creditos % config.creditosPorJugador());
+    };
 
-        $scope.numJugadores = function () {
-            return Math.min($scope.creditos / config.creditosPorJugador(), 6);
-        };
+    /* ─── Getters ligeros ─── */
+    $scope.numJugadores      = () => $scope._numJugadores;
+    $scope.creditosExactos   = () => $scope._creditosExactos;
+    $scope.creditosFaltantes = () => $scope._creditosFaltantes;
 
-        $scope.creditosJugador = function (numJugador) {
-            return $scope.numJugadores() - (numJugador - 1);
-        };
+    $scope.creditosJugador = n => Math.max($scope.numJugadores() - (n - 1), 0);
 
-        $scope.creditosExactos = function () {
-            return $scope.creditos && Math.round($scope.numJugadores()) === $scope.numJugadores() && $scope.numJugadores() > 1;
-        };
+    $scope.iniciar = function () {
+      if ($scope.creditosExactos()) {
+        config.setNumJugadores($scope.numJugadores());
+        $rootScope.restarCreditos($scope.numJugadores() * config.creditosPorJugador());
+        $state.go('jugar.chico.principal');
+      }
+    };
 
-        $scope.creditosFaltantes = function () {
-            if ($scope.numJugadores() == 6)
-                return false;
+    /* Selecciona sonido correcto */
+    $scope.sonido = function () {
+      let s = 'credito' + config.creditosPorJugador();
+      if (config.equipos) s += '_equipo';
+      return s + '.ogg';
+    };
 
-            return config.creditosPorJugador() - ($scope.creditos % config.creditosPorJugador());
-        };
+    /* ─── Hotkeys ─── */
+    const k = config.configuracion.keymap;
+    hotkeys.bindTo($scope)
+      .add({ combo: k.enter, callback: $scope.iniciar })
+      .add({ combo: `${k.arriba} ${k.abajo} ${k.arriba} ${k.abajo} ${k.arriba} ${k.abajo} ${k.enter}`, callback: () => $state.go('inicio') })
+      .add({ combo: k.arriba, callback: () => {
+        if ($rootScope.creditos > 0) {
+          $rootScope.creditos--; $rootScope.creditosExcedente++; $rootScope.guardarCreditos(); $scope.recalcularCreditos();
+        }
+      }})
+      .add({ combo: k.abajo, callback: () => {
+        if ($rootScope.creditosExcedente > 0) {
+          $rootScope.creditos++; $rootScope.creditosExcedente--; $rootScope.guardarCreditos(); $scope.recalcularCreditos();
+        }
+      }});
 
-        $scope.siguienteJugador = function () {
-            return Math.floor($scope.numJugadores() + 1);
-        };
+    /* Inicial */
+    $scope.recalcularCreditos();
 
+    /* ↻ Sincroniza cuando los créditos cambian desde hotkey global "c" */
+    $scope.$watch(() => $rootScope.creditos, () => $scope.recalcularCreditos());
 
-        $scope.sonido = function(){
-            var creditos = 'credito'+config.creditosPorJugador();
-            if(config.equipos)
-                creditos += '_equipo';
-
-            return creditos + '.ogg';
-        };
-
-        var keymap = config.configuracion.keymap;
-        //para poder terminar temprano el juego
-        hotkeys.bindTo($scope)
-            .add({
-                combo: keymap.arriba + ' ' + keymap.abajo + ' ' + keymap.arriba + ' ' + keymap.abajo + ' ' + keymap.arriba + ' ' + keymap.abajo + ' ' + keymap.enter,
-                callback: function () {
-                    $state.go('inicio');
-                }
-            })
-            .add({
-                combo: keymap.arriba,
-                callback: function(){
-                    if($rootScope.creditos > 0) {
-                        $rootScope.creditosExcedente++;
-                        $rootScope.creditos--;
-                        $rootScope.guardarCreditos();
-                    }
-                }
-            })
-            .add({
-                combo: keymap.abajo,
-                callback: function(){
-                    if($rootScope.creditosExcedente > 0) {
-                        $rootScope.creditosExcedente--;
-                        $rootScope.creditos++;
-                        $rootScope.guardarCreditos();
-                    }
-                }
-            })
-
-
-    });
+  });
