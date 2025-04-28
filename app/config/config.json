@@ -21,7 +21,6 @@
     "3500": 1,
     "4000": 1,
     "4500": 1
-
   },
   "maxArgollas": 6,
   "maxBlanqueadas": 6,
@@ -36,6 +35,9 @@
     25,
     40,
     25,
+    40,
+    10,
+    40,
     100,
     10,
     100
@@ -61,6 +63,9 @@
     "orificio10": "7",
     "orificio11": "8",
     "orificio12": "9",
+    "orificio13": "q",
+    "orificio14": "w",
+    "orificio15": "e",
     "cambiarJugador": "t"
   },
   "listaVideos": []
