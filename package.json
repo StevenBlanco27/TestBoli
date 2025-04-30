@@ -39,7 +39,7 @@
       "output": "dist"
     },
     "extraFiles": [
-      "node_modules/Frosch/frosch.min.js"
+      "node_modules/Frosch/frosch.js"
     ],
     "files": [
       "**/*"

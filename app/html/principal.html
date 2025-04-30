@@ -54,12 +54,13 @@
             </div>
             <div class="centrar argollas">
                 <div class="argolla"
-                     ng-repeat="orificio in config.configuracion.orificios track by $index"
-                     ng-class="{
-                       rana:   $index+1==config.configuracion.orificioRana,
-                       ranita: $index+1==config.configuracion.orificioRanita
-                     }">
-                    {{orificio}}
+                    ng-repeat="orificio in config.configuracion.orificios track by $index"
+                    ng-class="{
+                    rana:   $index+1==config.configuracion.orificioRana,
+                    ranita: $index+1==config.configuracion.orificioRanita,
+                    invisible: $index+1 === 12
+                    }">
+                {{orificio}}
                 </div>
             </div>
         </div>

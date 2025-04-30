@@ -40,3 +40,45 @@ video{width:100%}.seleccionBlanqueada{padding-top:5%}.seleccionBlanqueada .boton
 .columna.orificios{
   flex:1 1 auto;
 }
+/****  REJILLA EN ZIG-ZAG PARA LOS ORIFICIOS  ****/
+:root{
+  /* Ajusta solo estos dos números */
+  --arg-size : 4vw;    /* diámetro del círculo                    */
+  --arg-gap  : 0.8vw;  /* separación horizontal y vertical        */
+}
+
+/* ---------- contenedor ---------- */
+.orificios .argollas{
+  display:grid;
+  /* 3 columnas fijas del tamaño del círculo                      */
+  grid-template-columns: repeat(3, var(--arg-size));
+  /* altura de filas = diámetro (misma forma que un “botón”)      */
+  grid-auto-rows:       var(--arg-size);
+  /* separación entre filas y entre columnas                      */
+  gap: var(--arg-gap) var(--arg-gap);
+  /* bloque lo más compacto posible y centrado                    */
+  width:max-content;
+  margin:0 auto;
+}
+
+/* ---------- cada argolla ---------- */
+.orificios .argollas .argolla{
+  width      : var(--arg-size);
+  height     : var(--arg-size);
+  line-height: var(--arg-size);   /* centra el texto vertical     */
+  font-size  : calc(var(--arg-size)*0.35); /* escala número        */
+}
+
+/* ---------- desplazamiento de filas pares ---------- */
+/*  Los botones 4-6-… empiezan en la segunda columna (shift medio)
+    4 = fila 2 col 2, 5 = fila 2 col 3
+    9 = fila 4 col 2, 10 = fila 4 col 3, etc.                 */
+.orificios .argollas .argolla:nth-child(5n+4){
+  grid-column-start: 1;
+}
+.orificios .argollas .argolla:nth-child(5n+5){
+  grid-column-start: 3;
+}
+.argolla.invisible {
+  visibility: hidden;
+}
