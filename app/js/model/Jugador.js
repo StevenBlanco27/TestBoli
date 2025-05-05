@@ -94,18 +94,21 @@ angular.module('Frosch')
         };
 
         jugadorCls.prototype.verificarBlanqueada = function () {
-            if (this.ultimasArgollas[0] == null) {
-                //no metió ninguna
+            const puntosTurno = this.puntosTurno();
+        
+            if (
+                (this.ultimasArgollas[0] == null) || puntosTurno === 0
+            ) {
                 this.blanqueado = true;
                 this.blanqueadas++;
                 this.puntos += this.config.blanqueada * 1;
-
+        
                 if (this.config.blanqueada && this.blanqueadas >= this.config.configuracion.maxBlanqueadas) {
-                    //perdió por blanqueadas
                     this.perdio = true;
                 }
             }
         };
+        
 
         jugadorCls.prototype.blanqueadasRestantes = function(){
             return this.config.configuracion.maxBlanqueadas - this.blanqueadas;

@@ -184,21 +184,11 @@ angular.module('Frosch', ['ui.router', 'translate', 'cfp.hotkeys', 'com.2fdevs.v
 
   $rootScope.cargarCreditos();
 
-  var monedaAudio = new audio('moneda.ogg');
-
   hotkeys.bindTo($rootScope)
     .add({
       combo: 's s s',
       callback: function () {
         window.close();
-      }
-    })
-    .add({
-      combo: 'c',
-      callback: function () {
-        $rootScope.creditos++;
-        monedaAudio.play();
-        $rootScope.guardarCreditos();
       }
     })
     .add({

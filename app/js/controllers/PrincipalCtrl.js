@@ -36,7 +36,7 @@ angular.module('Frosch')
             if (!chico.jugadorActual.terminoTurno) {
                 rotar(orificio);
                 chico.jugadorActual.sumarPuntos(config.configuracion.orificios[orificio - 1]);
-
+        
                 if (orificio === config.configuracion.orificioRana) {
                     $state.go('jugar.chico.principal.rana');
                 } else if (orificio === config.configuracion.orificioRanita) {
@@ -46,10 +46,19 @@ angular.module('Frosch')
                 } else if (chico.jugadorActual.gano) {
                     $state.go('jugar.chico.principal.ganaste');
                 }
-
+        
                 chico.verificarTurno();
+        
+                // 🚀 NUEVO: Cambio de turno automático si terminó el turno
+                if (chico.jugadorActual.terminoTurno) {
+                    $timeout(() => {
+                        // 👀 Aquí usamos la MISMA lógica del manual (sonidos, animaciones incluidas)
+                        $scope.cambiarTurno(true);
+                    }, 1000);  // Pequeño retardo para que se vea bien (ajustable)
+                }
             }
         };
+        
 
         // Función para cambiar turno
         $scope.cambiarTurno = function (turno) {
