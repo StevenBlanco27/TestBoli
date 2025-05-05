@@ -67,3 +67,22 @@
 
     </div>
 </ui-view>
+
+<!-- MODAL DE CONFIRMACIÓN -->
+<div class="modal-confirmacion" ng-show="mostrarModal">
+    <div class="contenido">
+        <h2>¿Quieres volver al menú principal?</h2>
+        <div class="opciones">
+            <div 
+                class="opcion" 
+                ng-class="{ seleccionada: opcionSeleccionada === 'si' }">
+                Sí
+            </div>
+            <div 
+                class="opcion" 
+                ng-class="{ seleccionada: opcionSeleccionada === 'no' }">
+                No
+            </div>
+        </div>
+    </div>
+</div>
