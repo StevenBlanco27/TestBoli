@@ -8,7 +8,9 @@ angular.module('Frosch')
 
         const lanzamientoAudio = new audio("lanzamiento.ogg", false);
         const cambioJugadorAudio = new audio("c_jugador.ogg", true);
-
+        const ranaAudio = new audio("rana.ogg", true);
+        const ranitaAudio = new audio("ranita.ogg", true);
+        
         const keymap = config.configuracion.keymap;
         $scope.jugadores = chico.getJugadores();
         $scope.config = config;
@@ -40,9 +42,13 @@ angular.module('Frosch')
                 chico.jugadorActual.sumarPuntos(config.configuracion.orificios[orificio - 1]);
 
                 if (orificio === config.configuracion.orificioRana) {
-                    $state.go('jugar.chico.principal.rana');
+                    $scope.mostrarRana = true;
+                    ranaAudio.play();
+                    $timeout(() => { $scope.mostrarRana = false; }, 2000);
                 } else if (orificio === config.configuracion.orificioRanita) {
-                    $state.go('jugar.chico.principal.ranita');
+                    $scope.mostrarRanita = true;
+                    ranitaAudio.play();
+                    $timeout(() => { $scope.mostrarRanita = false; }, 2000);
                 } else if (chico.jugadorActual.monona) {
                     $state.go('jugar.chico.principal.monona');
                 } else if (chico.jugadorActual.gano) {
@@ -56,7 +62,7 @@ angular.module('Frosch')
                     $timeout(() => {
                         // 👀 Aquí usamos la MISMA lógica del manual (sonidos, animaciones incluidas)
                         $scope.cambiarTurno(true);
-                    }, 1000);  // Pequeño retardo para que se vea bien (ajustable)
+                    }, 3000);  // Pequeño retardo para que se vea bien (ajustable)
                 }
             }
         };
@@ -70,6 +76,19 @@ angular.module('Frosch')
 
             try {
                 chico.cambiarTurno(turno);
+                // ✅ Mostrar mensaje visual
+                $scope.mostrarCambioJugador = true;
+
+                // Reproducir sonido (si quieres también sonido aquí)
+                if (!chico.termino) {
+                    cambioJugadorAudio.play();
+                }
+
+                // Ocultar mensaje después de 1 segundo (o más si necesitas)
+                $timeout(() => {
+                    $scope.mostrarCambioJugador = false;
+                }, 1000);
+
                 $timeout(() => {
                     if (!chico.termino) {
                         cambioJugadorAudio.play();
