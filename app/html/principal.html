@@ -25,9 +25,9 @@
 
             <div class="centrar argollas">
                 <div class="argolla"
-                     ng-repeat="argolla in chico.jugadorActual.ultimasArgollas track by $index"
-                     ng-class="{inactiva: !argolla}">
-                    {{ argolla || '&nbsp'}}
+                    ng-repeat="argolla in chico.jugadorActual.ultimasArgollas track by $index"
+                    ng-class="{inactiva: argolla == null}">
+                    {{ argolla !== null && argolla !== undefined ? argolla : '&nbsp' }}
                 </div>
             </div>
 
