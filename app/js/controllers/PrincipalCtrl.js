@@ -45,15 +45,20 @@ angular.module('Frosch')
                     $scope.mostrarRana = true;
                     ranaAudio.play();
                     $timeout(() => { $scope.mostrarRana = false; }, 2000);
-                } else if (orificio === config.configuracion.orificioRanita) {
+                }
+                
+                if (orificio === config.configuracion.orificioRanita) {
                     $scope.mostrarRanita = true;
                     ranitaAudio.play();
                     $timeout(() => { $scope.mostrarRanita = false; }, 2000);
-                } else if (chico.jugadorActual.monona) {
+                }
+                
+                if (chico.jugadorActual.monona) {
                     $state.go('jugar.chico.principal.monona');
                 } else if (chico.jugadorActual.gano) {
                     $state.go('jugar.chico.principal.ganaste');
                 }
+                
         
                 chico.verificarTurno();
         
