@@ -62,7 +62,7 @@ angular.module('Frosch')
                     $timeout(() => {
                         // 👀 Aquí usamos la MISMA lógica del manual (sonidos, animaciones incluidas)
                         $scope.cambiarTurno(true);
-                    }, 3000);  // Pequeño retardo para que se vea bien (ajustable)
+                    }, 2000);  // Pequeño retardo para que se vea bien (ajustable)
                 }
             }
         };
