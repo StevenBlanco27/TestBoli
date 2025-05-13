@@ -1,5 +1,5 @@
 {
-  "idioma":"es-co",
+  "idioma":"en",
   "puntajes": [
     2000,
     2500,
@@ -11,8 +11,8 @@
   "blanqueadas": [
     0,
     -100,
-    -200,
-    -150
+    -150,
+    -200
   ],
   "creditosPorPuntaje": {
     "2000": 1,

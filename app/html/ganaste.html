@@ -3,7 +3,7 @@
     <img src="assets/img/ranas-esquina.webp" class="ranas-esquina"></span>
 
     <div class="grande centrar">
-        {{(config.equipos?'EQUIPO_NUM':'JUGADOR_NUM') | translateReplace:{numero: jugador.numero} }}
+        {{('JUGADOR_NUM') | translateReplace:{numero: jugador.numero} }}
 
     </div>
     <div class="grande centrar colorContraste">{{"GANASTE" | translate}}

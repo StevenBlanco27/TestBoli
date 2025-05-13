@@ -5,7 +5,7 @@ angular.module('Frosch')
         $scope.cargado = true;
         
         const sndInicio       = new audio('inicio.ogg', true);       
-        const sndIntroduccion = new audio('introduccion.ogg', false); 
+        const sndIntroduccion = new audio('configurar.ogg', false); 
     
         // 1. Garantiza que el AudioContext esté activo
         if (typeof sndInicio._ctx === 'object' && sndInicio._ctx.state === 'suspended') {
@@ -18,7 +18,7 @@ angular.module('Frosch')
         $scope.iniciar = function () {
             sndInicio.stop();
             sndIntroduccion.stop();
-            $state.go('jugar.seleccionEquipos');
+            $state.go('jugar.chico.seleccionBlanqueada');
         };
 
         hotkeys.bindTo($scope)

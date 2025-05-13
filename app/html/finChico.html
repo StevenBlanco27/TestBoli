@@ -14,7 +14,7 @@
             <li ng-repeat="participante in tanda.participantes">
                 <span class="jugador">
                     <span class="primer-ganador" ng-if="participante.numero == primerGanador.numero"></span>
-                    {{ config.equipos?"EQUIPO_NUM":"JUGADOR_NUM" | translateReplace:{numero:participante.numero} }}
+                    {{ "JUGADOR_NUM" | translateReplace:{numero:participante.numero} }}
                 </span>
                 <span class="chicosPerdidos">{{participante.chicosPerdidos}}</span>
             </li>

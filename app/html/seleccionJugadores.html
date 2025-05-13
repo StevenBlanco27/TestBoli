@@ -19,7 +19,7 @@
     </div>
 
     <div class="mediano centrar" ng-if="creditosFaltantes()">
-      {{ config.equipos ? 'PARA_X_EQUIPOS' : 'PARA_X_JUGADORES' | translateReplace:{ numCreditos: creditosFaltantes()} }}
+      {{  'PARA_X_JUGADORES' | translateReplace:{ numCreditos: creditosFaltantes()} }}
     </div>
 
     <button class="inicio" ng-click="iniciar()" ng-show="creditosExactos()">

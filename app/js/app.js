@@ -42,11 +42,6 @@ angular.module('Frosch', ['ui.router', 'translate', 'cfp.hotkeys', 'com.2fdevs.v
             }
           }
         })
-        .state('jugar.seleccionEquipos', {
-          url: "/equipos",
-          controller: 'SeleccionEquposCtrl',
-          templateUrl: "html/seleccionEquipos.html"
-        })
         .state('jugar.nuevoChico', {
           url: "/nuevo",
           controller: function ($scope, $state, tanda) {

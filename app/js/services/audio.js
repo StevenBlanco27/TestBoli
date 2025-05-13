@@ -1,40 +1,45 @@
 angular.module('Frosch')
     .factory('audio', function ($filter) {
 
-
         var audioClass = function (audio, translate) {
-
             this.audio = new Audio();
-            this.audio.src = translate ? $filter('translateAudio')(audio) : 'assets/sounds/'+ audio;
-            this.audio.preload = true;
+            this.audio.src = translate ? $filter('translateAudio')(audio) : 'assets/sounds/' + audio;
+            this.audio.preload = 'auto';
         };
 
         audioClass.prototype.doPlay = function () {
-            this.audio.currentTime = 0;
-
-            this.audio.pause();
-            this.audio.play();
+            try {
+                this.audio.load(); // Solo load() y play() (sin pause)
+                var playPromise = this.audio.play();
+                if (playPromise !== undefined) {
+                    playPromise.catch(error => console.warn('Audio play() fallo:', error));
+                }
+            } catch (e) {
+                console.error('Error en doPlay:', e);
+            }
         };
 
         audioClass.prototype.play = function () {
             var me = this;
-            if (this.audio.readyState == 0) {
-                this.audio.onloadedmetadata = function () {
+            try {
+                if (typeof me.audio._ctx === 'object' && me.audio._ctx.state === 'suspended') {
+                    me.audio._ctx.resume().then(() => me.doPlay());
+                } else {
                     me.doPlay();
-                };
-            } else {
-                me.doPlay();
+                }
+            } catch (e) {
+                console.error('Error en play:', e);
             }
-
-
         };
 
         audioClass.prototype.stop = function () {
-            this.audio.pause();
-
-            this.audio.currentTime = 0;
+            try {
+                this.audio.pause();
+                this.audio.currentTime = 0;
+            } catch (e) {
+                console.error('Error en stop:', e);
+            }
         };
 
         return audioClass;
-
     });

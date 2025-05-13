@@ -33,7 +33,13 @@ angular.module('Frosch')
                 el.addEventListener('transitionend', removeRotation, { once: true });
                 el.addEventListener('webkitTransitionEnd', removeRotation, { once: true });
             }
-            lanzamientoAudio.play();
+            $timeout(() => {
+                if (typeof lanzamientoAudio.audio._ctx === 'object' && lanzamientoAudio.audio._ctx.state === 'suspended') {
+                    lanzamientoAudio.audio._ctx.resume();
+                }
+                lanzamientoAudio.audio.load();  
+                lanzamientoAudio.play();
+            }, 100);             
         }
 
         $scope.sumarPuntos = function (orificio) {
@@ -43,13 +49,25 @@ angular.module('Frosch')
 
                 if (orificio === config.configuracion.orificioRana) {
                     $scope.mostrarRana = true;
-                    ranaAudio.play();
+                    $timeout(() => {
+                        if (typeof ranaAudio.audio._ctx === 'object' && ranaAudio.audio._ctx.state === 'suspended') {
+                            ranaAudio.audio._ctx.resume();
+                        }
+                        ranaAudio.audio.load();
+                        ranaAudio.play();
+                    }, 100);                    
                     $timeout(() => { $scope.mostrarRana = false; }, 2000);
                 }
                 
                 if (orificio === config.configuracion.orificioRanita) {
                     $scope.mostrarRanita = true;
-                    ranitaAudio.play();
+                    $timeout(() => {
+                        if (typeof ranitaAudio.audio._ctx === 'object' && ranitaAudio.audio._ctx.state === 'suspended') {
+                            ranitaAudio.audio._ctx.resume();
+                        }
+                        ranitaAudio.audio.load();
+                        ranitaAudio.play();
+                    }, 100);
                     $timeout(() => { $scope.mostrarRanita = false; }, 2000);
                 }
                 
@@ -84,10 +102,10 @@ angular.module('Frosch')
                 // ✅ Mostrar mensaje visual
                 $scope.mostrarCambioJugador = true;
 
-                // Reproducir sonido (si quieres también sonido aquí)
-                if (!chico.termino) {
-                    cambioJugadorAudio.play();
-                }
+                // // Reproducir sonido (si quieres también sonido aquí)
+                // if (!chico.termino) {
+                //     cambioJugadorAudio.play();
+                // }
 
                 // Ocultar mensaje después de 1 segundo (o más si necesitas)
                 $timeout(() => {
@@ -96,7 +114,14 @@ angular.module('Frosch')
 
                 $timeout(() => {
                     if (!chico.termino) {
-                        cambioJugadorAudio.play();
+                        $timeout(() => {
+                            if (typeof cambioJugadorAudio.audio._ctx === 'object' && cambioJugadorAudio.audio._ctx.state === 'suspended') {
+                                cambioJugadorAudio.audio._ctx.resume();
+                            }
+                            cambioJugadorAudio.audio.load();
+                            cambioJugadorAudio.play();
+                        }, 100);
+                        
                     }
                 }, chico.jugadorAnterior.blanqueado ? 3000 : 0);
 

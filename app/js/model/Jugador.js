@@ -13,12 +13,6 @@ angular.module('Frosch')
             this.tiros = [];
 
             this.turno = 0;
-
-            this.equipo = config.equipos;
-
-            if (this.equipo) {
-                this.ronda = -1; //al activarse la primera vez queda en 0
-            }
         };
 
         jugadorCls.prototype.puntosTurno = function () {
@@ -133,10 +127,6 @@ angular.module('Frosch')
             }
             this.turno++;
             this.activo = true;
-
-            if (this.equipo) {
-                this.ronda = (this.ronda + 1) % this.config.maxPorEquipo;
-            }
 
         };
 

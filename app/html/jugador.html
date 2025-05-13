@@ -4,7 +4,7 @@
 
     <div class="datos" ng-class="{activo: jugador.activo}">
 
-        <div class="titulo">{{ (jugador.equipo?"EQUIPO":"JUGADOR") | translate}} {{jugador.numero}}</div>
+        <div class="titulo">{{ ("JUGADOR") | translate}} {{jugador.numero}}</div>
         <progress value="{{jugador.puntos}}" max="{{maximo}}"></progress>
         <div class="blanqueadas">
             <img ng-if="jugador.blanqueadas <= 6"
@@ -16,7 +16,7 @@
             </div>
         </div>
         <div class="puntaje">{{jugador.puntos}}</div>
-        <span class="ronda pequeno" ng-if="jugador.equipo && jugador.activo">{{ jugador.codigoRonda()}}</span>
+        <span class="ronda pequeno" ng-if=" jugador.activo">{{ jugador.codigoRonda()}}</span>
 
     </div>
 </div>

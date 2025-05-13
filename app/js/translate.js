@@ -8,7 +8,7 @@ angular.module('translate', ['pascalprecht.translate'])
 
     // No usar sanitización para mayor rapidez (opcionalmente)
     $translateProvider.useSanitizeValueStrategy('escape');
-    $translateProvider.preferredLanguage('es-co');
+    $translateProvider.preferredLanguage('en');
   })
   .filter('translateReplace', function ($translate) {
     return function (translationId, interpolateParams, interpolation) {
