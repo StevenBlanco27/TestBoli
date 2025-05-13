@@ -10,7 +10,7 @@
 </div>
 <!-- Overlay de cambio de jugador -->
 <div ng-if="mostrarCambioJugador" class="overlay-modal">
-    <div class="texto-cambio">CAMBIANDO DE JUGADOR</div>
+    <div class="texto-cambio">CHANGE PLAYER</div>
 </div>
 <ui-view>
     <!-- ←--  le añadí layout-tablero -->
@@ -84,17 +84,17 @@
 <!-- MODAL DE CONFIRMACIÓN -->
 <div class="modal-confirmacion" ng-show="mostrarModal">
     <div class="contenido">
-        <h2>¿Quieres volver al menú principal?</h2>
+        <h2>Do you want to return to the main menu?</h2>
         <div class="opciones">
             <div 
                 class="opcion" 
                 ng-class="{ seleccionada: opcionSeleccionada === 'si' }">
-                Sí
+                Yes
             </div>
             <div 
                 class="opcion" 
                 ng-class="{ seleccionada: opcionSeleccionada === 'no' }">
-                No
+                Not
             </div>
         </div>
     </div>
