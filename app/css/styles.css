@@ -172,3 +172,29 @@ video{width:100%}.seleccionBlanqueada{padding-top:5%}.seleccionBlanqueada .boton
   from { opacity: 0; transform: scale(0.8); }
   to { opacity: 1; transform: scale(1); }
 }
+/* Forzar texto blanco en toda la aplicación */
+body, 
+.view, 
+.titulo, 
+.numero, 
+.puntaje, 
+.ronda, 
+.opcion, 
+.texto-cambio, 
+/* button,  */
+/* .modal-confirmacion .contenido, 
+.modal-confirmacion .opcion,  */
+.pequeno, 
+.mediano, 
+.grande, 
+.monedas .datos .titulo, 
+.monedas .datos .numero, 
+.mononas .datos .numero, 
+.orificios .meta span, 
+.orificios .meta .pequeno, 
+.jugador .datos .titulo, 
+.jugador .datos .puntaje, 
+.blanqueadasNumero {
+    color: white !important;
+    text-shadow: none !important;
+}
