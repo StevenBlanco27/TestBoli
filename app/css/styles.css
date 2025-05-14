@@ -140,7 +140,6 @@ body,
 .view, 
 .titulo, 
 .numero, 
-.puntaje, 
 .ronda, 
 .opcion, 
 .texto-cambio, 
@@ -153,9 +152,14 @@ body,
 .orificios .meta span, 
 .orificios .meta .pequeno, 
 .jugador .datos .titulo, 
-.jugador .datos .puntaje, 
+.jugador .datos 
 .blanqueadasNumero {
     color: white !important;
+    text-shadow: none !important;
+}
+
+.puntaje{
+    color: rgb(0 39 241) !important;
     text-shadow: none !important;
 }
 
