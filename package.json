@@ -1,90 +1,65 @@
+
 {
-  "build": {
-    "appId": "com.github.ivanrey.Frosch",
-    "productName": "Frosch",
-    "artifactName": "${productName}-${os}.${ext}",
-    "asar": true,
-    "copyright": "Copyright © 2018 ${author}",
-    "mac": {
-      "category": "public.app-category.games",
-      "icon": "icon.icns",
-      "target": "dmg"
-    },
-    "linux": {
-      "artifactName": "${productName}-${os}-${arch}.${ext}",
-      "target": {
-        "target": "zip",
-        "arch": [
-          "x64",
-          "ia32"
-        ]
-      }
-    },
-    "nsis": {
-      "oneClick": false
-    },
-    "win": {
-      "target": [
-        {
-          "target": "nsis",
-          "arch": [
-            "x64",
-            "ia32"
-          ]
-        }
-      ]
-    },
-    "directories": {
-      "app": "app",
-      "output": "dist"
-    },
-    "extraFiles": [
-      "node_modules/Frosch/frosch.js"
-    ],
-    "files": [
-      "**/*"
-    ],
-    "publish": [
-      {
-        "provider": "github"
-      }
-    ]
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/ivanrey/Frosch.git"
-  },
-  "name": "frosch",
-  "nodejs": true,
-  "description": "Frosch software para juego de rana electrónica",
-  "single-instance": true,
-  "keywords": [
-    "rana",
-    "electronica",
-    "juego"
-  ],
-  "version": "1.4.4",
-  "main": "app/main.js",
-  "bugs": {
-    "url": "https://github.com/ivanrey/Frosch/issues"
-  },
-  "homepage": "https://github.com/ivanrey/Frosch",
+  "name": "testboli",
+  "version": "1.0.0",
+  "description": "Juego Frosch para Raspberry Pi",
+  "main": "main.js",
   "scripts": {
     "start": "electron --remote-debugging-port=9222 .",
     "pack": "electron-builder --dir",
     "dist": "electron-builder",
     "publish-dist": "electron-builder -lmw --publish always",
     "postinstall": "electron-builder install-app-deps",
-    "dist:pi": "electron-builder --dir --linux --armv7l --config.asar=true"
+    "dist:pi": "electron-builder --dir --linux --arm64 --config.asar=true"
   },
-  "author": "Ivan Rey",
-  "license": "MIT",
-  "devDependencies": {
-    "electron": "^11.5.0",
-    "electron-builder": "^26.0.12"
+  "build": {
+    "appId": "com.github.ivanrey.Frosch",
+    "productName": "Frosch",
+    "artifactName": "${productName}-${os}-${arch}.${ext}",
+    "asar": true,
+    "copyright": "Copyright © 2018",
+    "directories": {
+      "app": "app",
+      "output": "dist"
+    },
+    "files": [
+      "**/*"
+    ],
+    "extraFiles": [
+      "node_modules/Frosch/frosch.js"
+    ],
+    "linux": {
+      "target": [
+        {
+          "target": "zip",
+          "arch": ["x64", "ia32", "arm64"]
+        }
+      ],
+      "category": "Game",
+      "icon": "build/icono.png"
+    },
+    "mac": {
+      "category": "public.app-category.games",
+      "icon": "icon.icns",
+      "target": "dmg"
+    },
+    "win": {
+      "target": [
+        {
+          "target": "nsis",
+          "arch": ["x64", "ia32"]
+        }
+      ]
+    },
+    "nsis": {
+      "oneClick": false
+    },
+    "publish": [
+      {
+        "provider": "github"
+      }
+    ]
   },
-  "engines": {
-    "yarn": ">= 1.0.0"
-  },
-  "packageManager": "yarn@1.22.22+sha512.a6b2f7906b721bba3d67d4aff083df04dad64c399707841b7acf00f6b133b7ac24255f2652fa22ae3534329dc6180534e98d17432037ff6fd140556e2bb3137e"
+  "dependencies": {},
+  "devDependencies": {}
 }
